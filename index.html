@@ -30,9 +30,12 @@
 </style>
 <script>
   (function() {
-    if (sessionStorage.getItem('sitrep_auth') === '1') return;
     document.addEventListener('DOMContentLoaded', function() {
       var gate = document.getElementById('auth-gate');
+      if (sessionStorage.getItem('sitrep_auth') === '1') {
+        gate.style.display = 'none';
+        return;
+      }
       var input = document.getElementById('auth-input');
       var err = document.getElementById('auth-error');
       function attempt() {
