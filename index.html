@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SITREP — Jeremy Cmiel</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #080d16; color: #e8edf5; font-family: 'Courier New', monospace; font-size: 13px; overflow-x: hidden; }
+
+  /* TOP BAR */
+  #topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: #060a12; border-bottom: 1px solid #1a2535;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 28px; height: 50px;
+  }
+  #topbar .wordmark { color: #00d4ff; font-size: 20px; font-weight: bold; letter-spacing: 5px; }
+  #topbar nav { display: flex; gap: 4px; }
+  #topbar nav button {
+    background: none; border: none; color: #6b7f9e; font-family: 'Courier New', monospace;
+    font-size: 12px; letter-spacing: 2px; padding: 8px 16px; cursor: pointer;
+    border-bottom: 2px solid transparent; transition: all 0.2s;
+  }
+  #topbar nav button:hover { color: #e8edf5; }
+  #topbar nav button.active { color: #00d4ff; border-bottom: 2px solid #00d4ff; }
+  #topbar .liveblock { display: flex; align-items: center; gap: 12px; color: #6b7f9e; font-size: 12px; }
+  #topbar .live-dot { width: 9px; height: 9px; background: #ff3b3b; border-radius: 50%; animation: blink 1.2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  #clock { color: #e8edf5; font-size: 12px; letter-spacing: 1px; }
+
+  /* TICKER */
+  #ticker {
+    position: fixed; top: 50px; left: 0; right: 0; z-index: 99;
+    background: #060a12; border-bottom: 1px solid #1a2535;
+    height: 36px; display: flex; align-items: center; overflow: hidden;
+  }
+  #ticker .ticker-label {
+    background: #0d1421; color: #6b7f9e; font-size: 10px; letter-spacing: 2px;
+    padding: 0 16px; height: 100%; display: flex; align-items: center;
+    border-right: 1px solid #1a2535; white-space: nowrap; flex-shrink: 0;
+  }
+  #ticker-track {
+    display: flex; align-items: center; gap: 8px;
+    animation: scroll-ticker 40s linear infinite;
+    white-space: nowrap; padding: 0 20px;
+  }
+  #ticker:hover #ticker-track { animation-play-state: paused; }
+  @keyframes scroll-ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .tick-pill {
+    padding: 4px 12px; border-radius: 2px; font-size: 11px; letter-spacing: 1px;
+    white-space: nowrap; cursor: pointer; text-decoration: none; color: inherit;
+  }
+  .tick-crit { background: rgba(255,59,59,0.2); border: 1px solid #ff3b3b; color: #ff6b6b; }
+  .tick-warn { background: rgba(255,140,0,0.2); border: 1px solid #ff8c00; color: #ffaa44; }
+  .tick-info { background: rgba(0,212,255,0.1); border: 1px solid #00d4ff; color: #00d4ff; }
+  .tick-up { color: #00e676; }
+  .tick-down { color: #ff3b3b; }
+  .tick-flat { color: #aaa; }
+  .tick-sep { color: #1a2535; padding: 0 4px; }
+
+  /* MAIN CONTENT */
+  #main {
+    margin-top: 86px; padding: 20px 28px 40px;
+    max-width: 2200px; box-sizing: border-box;
+    width: 100%;
+  }
+
+  /* SECTIONS (tab visibility) */
+  .tab-section { display: none; }
+  .tab-section.visible { display: block; }
+
+  /* PRIORITY ALPHA */
+  #priority-alpha {
+    background: #0d1421; border: 1px solid #1a2535;
+    border-left: 4px solid #ff3b3b; border-radius: 4px;
+    padding: 20px 24px; margin-bottom: 18px;
+    display: flex; align-items: flex-start; gap: 20px;
+  }
+  #priority-alpha .alpha-icon {
+    width: 48px; height: 48px; background: rgba(255,140,0,0.15);
+    border: 1px solid #ff8c00; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  #priority-alpha .alpha-label { color: #ff8c00; font-size: 11px; letter-spacing: 3px; margin-bottom: 8px; }
+  #priority-alpha .alpha-title { color: #e8edf5; font-size: 20px; font-weight: bold; margin-bottom: 10px; }
+  #priority-alpha .alpha-body { color: #a0b4cc; font-size: 13px; line-height: 1.7; }
+  #priority-alpha .alpha-body strong { color: #ff8c00; }
+  .cta-btn {
+    display: inline-block; margin-top: 14px;
+    background: none; border: 1px solid #00d4ff; color: #00d4ff;
+    padding: 9px 20px; font-family: 'Courier New', monospace; font-size: 12px;
+    letter-spacing: 1px; cursor: pointer; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .cta-btn:hover { background: rgba(0,212,255,0.1); }
+
+  /* 3-COL GRID */
+  .grid-3 { display: grid; grid-template-columns: 28% 44% 28%; gap: 16px; margin-bottom: 16px; }
+
+  /* PANELS */
+  .panel {
+    background: #0d1421; border: 1px solid #1a2535; border-radius: 4px;
+    overflow: hidden;
+  }
+  .panel-header {
+    padding: 12px 18px; border-bottom: 1px solid #1a2535;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .panel-title { color: #6b7f9e; font-size: 11px; letter-spacing: 2px; }
+  .panel-link { color: #00d4ff; font-size: 11px; text-decoration: none; letter-spacing: 1px; }
+  .panel-link:hover { text-decoration: underline; }
+  .panel-body { padding: 14px 18px; }
+
+  /* SCHEDULE */
+  .event-card {
+    padding: 12px 14px; border-left: 2px solid #1a2535;
+    margin-bottom: 12px; transition: border-color 0.2s;
+  }
+  .event-card:hover { border-left-color: #00d4ff; }
+  .event-card.personal { border-left-color: #4caf50; }
+  .event-card.external { border-left-color: #ff8c00; }
+  .event-card.internal { border-left-color: #00d4ff; }
+  .event-time { color: #6b7f9e; font-size: 11px; letter-spacing: 1px; }
+  .event-time a { color: #00d4ff; text-decoration: none; }
+  .event-time a:hover { text-decoration: underline; }
+  .event-title { color: #e8edf5; font-size: 14px; font-weight: bold; margin: 5px 0; }
+  .event-sub { color: #6b7f9e; font-size: 12px; margin-bottom: 8px; }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 4px; }
+  .badge {
+    padding: 3px 9px; font-size: 10px; letter-spacing: 1px; border-radius: 2px;
+  }
+  .badge-confirmed { background: rgba(0,212,255,0.1); color: #00d4ff; border: 1px solid rgba(0,212,255,0.3); }
+  .badge-internal { background: rgba(0,212,255,0.1); color: #00d4ff; border: 1px solid rgba(0,212,255,0.3); }
+  .badge-personal { background: rgba(76,175,80,0.1); color: #4caf50; border: 1px solid rgba(76,175,80,0.3); }
+  .badge-prep { background: rgba(255,215,0,0.1); color: #ffd700; border: 1px solid rgba(255,215,0,0.3); }
+  .badge-external { background: rgba(255,140,0,0.1); color: #ff8c00; border: 1px solid rgba(255,140,0,0.3); }
+  .badge-starred { background: rgba(255,215,0,0.15); color: #ffd700; border: 1px solid #ffd700; }
+  .upcoming-divider { border-top: 1px solid #1a2535; margin: 12px 0 8px; }
+  .upcoming-label { color: #6b7f9e; font-size: 9px; letter-spacing: 2px; margin-bottom: 8px; }
+  .upcoming-item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #0f1a2a; }
+  .upcoming-item .ui-name { color: #a0b4cc; font-size: 11px; }
+  .upcoming-item .ui-date { font-size: 10px; }
+  .upcoming-item .ui-date.ok { color: #00d4ff; }
+  .upcoming-item .ui-date.warn { color: #ffd700; }
+
+  /* DEAL SPOTLIGHT */
+  .deal-badge {
+    display: inline-block; padding: 3px 10px; font-size: 10px; letter-spacing: 2px;
+    background: rgba(0,212,255,0.1); border: 1px solid #00d4ff; color: #00d4ff;
+    border-radius: 2px; margin-bottom: 12px;
+  }
+  .deal-badge.imminent { background: rgba(255,140,0,0.15); border-color: #ff8c00; color: #ff8c00; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+  .stat-tile {
+    background: #060a12; border: 1px solid #1a2535; border-radius: 3px; padding: 8px 10px;
+  }
+  .stat-tile .st-label { color: #6b7f9e; font-size: 10px; letter-spacing: 2px; margin-bottom: 6px; }
+  .stat-tile .st-value { color: #00d4ff; font-size: 17px; font-weight: bold; }
+  .stat-tile .st-value.warn { color: #ff8c00; }
+  .progress-row { display: flex; align-items: center; gap: 0; margin-bottom: 14px; }
+  .prog-stage {
+    flex: 1; text-align: center; padding: 5px 0; font-size: 9px; letter-spacing: 1px;
+    background: #060a12; border: 1px solid #1a2535; color: #6b7f9e;
+  }
+  .prog-stage.active { background: rgba(0,212,255,0.1); border-color: #00d4ff; color: #00d4ff; }
+  .prog-arrow { color: #1a2535; font-size: 16px; padding: 0 2px; }
+  .deal-steps { list-style: none; margin-bottom: 12px; }
+  .deal-steps li { padding: 7px 0; border-bottom: 1px solid #0f1a2a; color: #a0b4cc; font-size: 12px; line-height: 1.6; }
+  .deal-steps li::before { content: '>> '; color: #00d4ff; }
+  .deal-steps li strong { color: #e8edf5; }
+  .intel-block {
+    border-left: 3px solid #ff8c00; padding: 8px 12px;
+    background: rgba(255,140,0,0.05); border-radius: 0 3px 3px 0;
+  }
+  .intel-label { color: #ff8c00; font-size: 9px; letter-spacing: 2px; margin-bottom: 4px; }
+  .intel-text { color: #a0b4cc; font-size: 11px; font-style: italic; line-height: 1.5; }
+
+  /* MISSION CHECKLIST */
+  .checklist { list-style: none; margin-bottom: 14px; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 9px 0; border-bottom: 1px solid #0f1a2a; cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .checklist li:hover { background: rgba(255,255,255,0.02); }
+  .checklist li.done { opacity: 0.4; text-decoration: line-through; }
+  .cb-box {
+    width: 14px; height: 14px; border: 1px solid #1a2535; border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    color: #00d4ff; font-size: 10px; flex-shrink: 0; margin-top: 1px;
+  }
+  .checklist li.done .cb-box { background: rgba(0,212,255,0.2); }
+  .cb-text { color: #a0b4cc; font-size: 12px; line-height: 1.6; flex: 1; }
+  .cb-pri {
+    padding: 2px 8px; font-size: 10px; letter-spacing: 1px; border-radius: 2px;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .pri-crit { background: rgba(255,59,59,0.2); color: #ff6b6b; border: 1px solid #ff3b3b; }
+  .pri-high { background: rgba(255,140,0,0.2); color: #ffaa44; border: 1px solid #ff8c00; }
+  .pri-stan { background: rgba(0,212,255,0.1); color: #00d4ff; border: 1px solid rgba(0,212,255,0.4); }
+  .pri-low { background: rgba(107,127,158,0.15); color: #6b7f9e; border: 1px solid #2a3a50; }
+  .qa-divider { border-top: 1px solid #1a2535; margin: 10px 0 10px; }
+  .qa-label { color: #6b7f9e; font-size: 9px; letter-spacing: 2px; margin-bottom: 8px; }
+  .qa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .qa-btn {
+    display: block; text-decoration: none;
+    background: #060a12; border: 1px solid #1a2535; border-radius: 3px;
+    padding: 7px 10px; color: #a0b4cc; font-size: 10px; letter-spacing: 1px;
+    text-align: center; transition: all 0.2s;
+  }
+  .qa-btn:hover { border-color: #00d4ff; color: #00d4ff; background: rgba(0,212,255,0.05); }
+  .qa-icon { font-size: 13px; display: block; margin-bottom: 3px; }
+
+  /* BOTTOM ROW */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* MARKETS */
+  .market-table { width: 100%; border-collapse: collapse; }
+  .market-table tr { border-bottom: 1px solid #0f1a2a; }
+  .market-table tr:last-child { border-bottom: none; }
+  .market-table td { padding: 10px 8px; font-size: 13px; }
+  .market-table .ticker-col { color: #e8edf5; font-weight: bold; letter-spacing: 1px; }
+  .market-table .price-col { color: #e8edf5; text-align: right; }
+  .market-table .chg-col { text-align: right; }
+  .market-table .pct-col { text-align: right; font-weight: bold; }
+  .up { color: #00e676; }
+  .down { color: #ff3b3b; }
+  .flat-c { color: #6b7f9e; }
+  .market-row-link { text-decoration: none; display: table-row; }
+  .market-table tr:hover td { background: rgba(0,212,255,0.04); cursor: pointer; }
+
+  /* COMMS */
+  .email-item {
+    padding: 11px 0; border-bottom: 1px solid #0f1a2a;
+    display: flex; flex-direction: column; gap: 5px;
+  }
+  .email-item:last-child { border-bottom: none; }
+  .email-top { display: flex; align-items: center; justify-content: space-between; }
+  .email-from { color: #e8edf5; font-size: 13px; font-weight: bold; }
+  .email-time { color: #6b7f9e; font-size: 11px; }
+  .email-subject { color: #a0b4cc; font-size: 12px; }
+  .email-actions { display: flex; gap: 8px; align-items: center; margin-top: 4px; }
+  .email-btn {
+    padding: 3px 10px; font-size: 10px; letter-spacing: 1px;
+    border: 1px solid #1a2535; background: none; color: #6b7f9e;
+    cursor: pointer; font-family: 'Courier New', monospace;
+    text-decoration: none; border-radius: 2px; transition: all 0.2s;
+  }
+  .email-btn:hover { border-color: #00d4ff; color: #00d4ff; }
+  .email-btn.reply { border-color: #00d4ff; color: #00d4ff; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; color: #2a3a50; font-size: 10px; letter-spacing: 1px;
+    padding: 20px 0 10px; border-top: 1px solid #0f1a2a; margin-top: 16px;
+  }
+
+  /* RESPONSIVE — SMALL SCREENS */
+  @media (max-width: 900px) {
+    #main { padding: 16px 12px 32px; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+    #priority-alpha .alpha-title { font-size: 16px; }
+  }
+
+  /* RESPONSIVE — COMPACT/PREVIEW PANE (600–1100px) */
+  @media (max-width: 1100px) and (min-width: 901px) {
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+    .grid-3 > .panel:last-child { grid-column: 1 / -1; }
+  }
+
+  /* RESPONSIVE — WIDE DESKTOP (1440px+) */
+  @media (min-width: 1440px) {
+    body { font-size: 14px; }
+    #main { padding: 24px 40px 48px; }
+    .panel-body { padding: 16px 20px; }
+    .panel-header { padding: 14px 20px; }
+    #priority-alpha { padding: 24px 28px; }
+    #priority-alpha .alpha-title { font-size: 22px; }
+    #priority-alpha .alpha-body { font-size: 14px; }
+    .event-title { font-size: 15px; }
+    .grid-3 { gap: 20px; }
+    .grid-2 { gap: 20px; }
+    .market-table td { padding: 12px 10px; font-size: 14px; }
+    .email-from { font-size: 14px; }
+    .email-subject { font-size: 13px; }
+    .checklist li { padding: 11px 0; }
+    .cb-text { font-size: 13px; }
+  }
+
+  /* RESPONSIVE — ULTRA-WIDE (1920px+) */
+  @media (min-width: 1920px) {
+    #topbar { height: 56px; padding: 0 40px; }
+    #topbar .wordmark { font-size: 22px; letter-spacing: 6px; }
+    #topbar nav button { font-size: 13px; padding: 10px 20px; }
+    #ticker { top: 56px; height: 40px; }
+    #main { margin-top: 96px; padding: 28px 56px 56px; }
+    #priority-alpha .alpha-title { font-size: 24px; }
+    .stat-tile .st-value { font-size: 20px; }
+    .market-table td { padding: 14px 10px; font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <div class="wordmark">SITREP</div>
+  <nav>
+    <button class="active" onclick="showTab('schedule', this)">SCHEDULE</button>
+    <button onclick="showTab('comms', this)">COMMS</button>
+    <button onclick="showTab('markets', this)">MARKETS</button>
+    <button onclick="showTab('signals', this)">SIGNALS</button>
+    <button onclick="showTab('pipeline', this)">PIPELINE</button>
+  </nav>
+  <div class="liveblock">
+    <div class="live-dot"></div>
+    <span>LIVE</span>
+    <span id="clock">WED · 11 MAR 2026 · --:-- CDT</span>
+  </div>
+</div>
+
+<!-- TICKER BAR -->
+<div id="ticker">
+  <div class="ticker-label">KEY FACTS</div>
+  <div id="ticker-track">
+    <!-- content duplicated for seamless loop -->
+    <span class="tick-pill tick-crit">⚠ QUAD TRIAL — REPLY TO ALEX TODAY</span>
+    <span class="tick-sep">|</span>
+    <span class="tick-pill tick-warn">TARGET INTRO — THU 0905 HRS</span>
+    <span class="tick-sep">|</span>
+    <span class="tick-pill tick-warn">HERTZ SYNC — THU 1230 HRS</span>
+    <span class="tick-sep">|</span>
+    <span class="tick-pill tick-warn">AE FORECAST — FRI 1000 HRS</span>
+    <span class="tick-sep">|</span>
+    <span class="tick-pill tick-info">WALMART PITCH VIDEO VIEWED TODAY</span>
+    <span class="tick-sep">|</span>
+    <a href="https://finance.yahoo.com/quote/%5EGSPC/" target="_blank" class="tick-pill" style="text-decoration:none;color:#aaa">S&P <span class="tick-down">6,903 ▼ −0.62%</span></a>
+    <span class="tick-sep">|</span>
+    <a href="https://finance.yahoo.com/quote/PLTR/" target="_blank" class="tick-pill" style="text-decoration:none;color:#aaa">PLTR <span class="tick-down">$151.14 ▼ −2.74%</span></a>
+    <span class="tick-sep">|</span>
+    <a href="https://finance.yahoo.com/quote/TSLA/" target="_blank" class="tick-pill" style="text-decoration:none;color:#aaa">TSLA <span class="tick-flat">$400.33 ▶ ~flat</span></a>
+    <span class="tick-sep">|</span>
+    <a href="https://finance.yahoo.com/quote/UNH/" target="_blank" class="tick-pill" style="text-decoration:none;color:#aaa">UNH <span class="tick-up">$287.30 ▲ +1.09%</span></a>
+    <span class="tick-sep">|</span>
+    <a href="https://finance.yahoo.com/quote/DFTX/" target="_blank" class="tick-pill" style="text-decoration:none;color:#aaa">DFTX <span class="tick-up">$19.39 ▲ +5.67%</span></a>
+    <span class="tick-sep">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <!-- duplicate for seamless scroll -->
+    <span class="tick-pill tick-crit">⚠ QUAD TRIAL — REPLY TO ALEX TODAY</span>
+    <span class="tick-sep">|</span>
+    <span class="tick-pill tick-warn">TARGET INTRO — THU 0905 HRS</span>
+    <span class="tick-sep">|</span>
+    <span class="tick-pill tick-warn">HERTZ SYNC — THU 1230 HRS</span>
+    <span class="tick-sep">|</span>
+    <span class="tick-pill tick-warn">AE FORECAST — FRI 1000 HRS</span>
+    <span class="tick-sep">|</span>
+    <span class="tick-pill tick-info">WALMART PITCH VIDEO VIEWED TODAY</span>
+    <span class="tick-sep">|</span>
+    <a href="https://finance.yahoo.com/quote/%5EGSPC/" target="_blank" class="tick-pill" style="text-decoration:none;color:#aaa">S&P <span class="tick-down">6,903 ▼ −0.62%</span></a>
+    <span class="tick-sep">|</span>
+    <a href="https://finance.yahoo.com/quote/PLTR/" target="_blank" class="tick-pill" style="text-decoration:none;color:#aaa">PLTR <span class="tick-down">$151.14 ▼ −2.74%</span></a>
+    <span class="tick-sep">|</span>
+    <a href="https://finance.yahoo.com/quote/TSLA/" target="_blank" class="tick-pill" style="text-decoration:none;color:#aaa">TSLA <span class="tick-flat">$400.33 ▶ ~flat</span></a>
+    <span class="tick-sep">|</span>
+    <a href="https://finance.yahoo.com/quote/UNH/" target="_blank" class="tick-pill" style="text-decoration:none;color:#aaa">UNH <span class="tick-up">$287.30 ▲ +1.09%</span></a>
+    <span class="tick-sep">|</span>
+    <a href="https://finance.yahoo.com/quote/DFTX/" target="_blank" class="tick-pill" style="text-decoration:none;color:#aaa">DFTX <span class="tick-up">$19.39 ▲ +5.67%</span></a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+  <!-- PRIORITY ALPHA — always visible -->
+  <div id="priority-alpha">
+    <div class="alpha-icon">📄</div>
+    <div style="flex:1">
+      <div class="alpha-label">// PRIORITY ALPHA</div>
+      <div class="alpha-title">Reply to Alex Dich — Confirm Quad Trial Start &amp; Send Pilot Agreement</div>
+      <div class="alpha-body">
+        Alex replied <strong>this morning</strong> — trial is targeted for <strong>Mon Mar 16</strong>. Josh (procurement) is OOO until <strong>Mar 23</strong> — the zero-cost pilot agreement must reach Denny &amp; Alex today to protect the Q1 window. Every day this slips is a lost trial day. Also confirm no platform gating during trial with Tom / Brooke before sending.
+      </div>
+      <a href="https://mail.google.com/mail/u/0/#search/from%3Aquad.com" class="cta-btn" target="_blank">→ OPEN QUAD THREAD &gt;</a>
+    </div>
+  </div>
+
+  <!-- SCHEDULE TAB (default visible) -->
+  <div id="tab-schedule" class="tab-section visible">
+    <div class="grid-3">
+
+      <!-- LEFT: TODAY'S SCHEDULE -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">// TODAY'S SCHEDULE</span>
+          <a href="https://calendar.google.com/calendar/r/day" target="_blank" class="panel-link">OPEN CALENDAR &gt;</a>
+        </div>
+        <div class="panel-body">
+
+          <div class="event-card internal">
+            <div class="event-time">1100 – 1145 HRS · <a href="https://meet.google.com/cdo-ekpc-vdy" target="_blank">GOOGLE MEET</a></div>
+            <div class="event-title">Oriol / Jeremy — Intro</div>
+            <div class="event-sub">Oriol Bermejo confirmed · Internal HappyRobot context</div>
+            <div class="badge-row">
+              <span class="badge badge-confirmed">CONFIRMED</span>
+              <span class="badge badge-internal">INTERNAL</span>
+            </div>
+          </div>
+
+          <div class="event-card personal">
+            <div class="event-time">1600 – 1700 HRS</div>
+            <div class="event-title">Wedding Planner Meeting</div>
+            <div class="event-sub">Personal · 1 hour</div>
+            <div class="badge-row">
+              <span class="badge badge-personal">PERSONAL</span>
+            </div>
+          </div>
+
+          <div class="event-card personal">
+            <div class="event-time">1900 – 2100 HRS</div>
+            <div class="event-title">Mentor Meeting</div>
+            <div class="event-sub">Personal · 2 hours</div>
+            <div class="badge-row">
+              <span class="badge badge-personal">PERSONAL</span>
+            </div>
+          </div>
+
+          <div class="upcoming-divider"></div>
+          <div class="upcoming-label">UPCOMING THIS WEEK</div>
+
+          <div class="upcoming-item">
+            <span class="ui-name">HappyRobot x Target Intro (Zoom)</span>
+            <span class="ui-date warn">THU 0905</span>
+          </div>
+          <div class="upcoming-item">
+            <span class="ui-name">HappyRobot x Hertz | Sync</span>
+            <span class="ui-date warn">THU 1230</span>
+          </div>
+          <div class="upcoming-item">
+            <span class="ui-name">Wedding Consultation — Milbern</span>
+            <span class="ui-date ok">FRI 0900</span>
+          </div>
+          <div class="upcoming-item">
+            <span class="ui-name">AE Forecast — Brooke Adair</span>
+            <span class="ui-date warn">FRI 1000 ★</span>
+          </div>
+          <div class="upcoming-item">
+            <span class="ui-name">Planning — All Hands</span>
+            <span class="ui-date ok">FRI 1100</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CENTER: DEAL SPOTLIGHT -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">// DEAL SPOTLIGHT — QUAD</span>
+          <span class="deal-badge imminent">TRIAL IMMINENT</span>
+        </div>
+        <div class="panel-body">
+          <div class="stat-grid">
+            <div class="stat-tile">
+              <div class="st-label">TRIAL START</div>
+              <div class="st-value">16 MAR 2026</div>
+            </div>
+            <div class="stat-tile">
+              <div class="st-label">TARGET ARR</div>
+              <div class="st-value">$200K+</div>
+            </div>
+            <div class="stat-tile">
+              <div class="st-label">PRIMARY CONTACT</div>
+              <div class="st-value" style="font-size:12px;margin-top:2px;">Denny Stiles</div>
+            </div>
+            <div class="stat-tile">
+              <div class="st-label">LEGAL BLOCKER</div>
+              <div class="st-value warn" style="font-size:12px;margin-top:2px;">Josh · OOO Mar 23</div>
+            </div>
+          </div>
+
+          <div class="progress-row">
+            <div class="prog-stage active">TRIAL</div>
+            <div class="prog-arrow">›</div>
+            <div class="prog-stage">PILOT</div>
+            <div class="prog-arrow">›</div>
+            <div class="prog-stage">CLOSED</div>
+          </div>
+
+          <ul class="deal-steps">
+            <li><strong>Reply</strong> to Alex Dich — confirm trial start &amp; next steps</li>
+            <li><strong>Send</strong> zero-cost pilot agreement to Denny &amp; Alex today</li>
+            <li><strong>Confirm</strong> no platform gating during trial (Tom / Brooke)</li>
+            <li><strong>Schedule</strong> kickoff once trial dates are locked in</li>
+            <li>Alex pulling in Sales &amp; HR analysts — <strong>deal scope may expand</strong></li>
+          </ul>
+
+          <div class="intel-block">
+            <div class="intel-label">INTEL</div>
+            <div class="intel-text">Denny building rate negotiation agent mock-up with dummy data → demo to leadership → convert to $25k paid pilot. Multi-dept interest confirmed. Win before Josh returns Mar 23.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: MISSION CHECKLIST -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">// MISSION CHECKLIST</span>
+          <span style="color:#6b7f9e;font-size:9px;cursor:pointer;" onclick="resetChecklist()">CLICK TO COMPLETE</span>
+        </div>
+        <div class="panel-body">
+          <ul class="checklist" id="checklist">
+            <li onclick="toggleCheck(this)">
+              <div class="cb-box" data-checked="false"></div>
+              <span class="cb-text">Reply to Alex Dich — confirm Quad trial &amp; send pilot agreement</span>
+              <span class="cb-pri pri-crit">CRIT</span>
+            </li>
+            <li onclick="toggleCheck(this)">
+              <div class="cb-box" data-checked="false"></div>
+              <span class="cb-text">Confirm no platform gating on Quad trial (Tom / Brooke)</span>
+              <span class="cb-pri pri-high">HIGH</span>
+            </li>
+            <li onclick="toggleCheck(this)">
+              <div class="cb-box" data-checked="false"></div>
+              <span class="cb-text">1100 HRS — Oriol intro call</span>
+              <span class="cb-pri pri-high">HIGH</span>
+            </li>
+            <li onclick="toggleCheck(this)">
+              <div class="cb-box" data-checked="false"></div>
+              <span class="cb-text">Prep deal-by-deal forecast for AE call Friday</span>
+              <span class="cb-pri pri-high">HIGH</span>
+            </li>
+            <li onclick="toggleCheck(this)">
+              <div class="cb-box" data-checked="false"></div>
+              <span class="cb-text">Follow up on Walmart pitch video view — signal is hot</span>
+              <span class="cb-pri pri-high">HIGH</span>
+            </li>
+            <li onclick="toggleCheck(this)">
+              <div class="cb-box" data-checked="false"></div>
+              <span class="cb-text">Reschedule Allegiant — Royden Wenger no-showed Friday</span>
+              <span class="cb-pri pri-stan">STAN</span>
+            </li>
+            <li onclick="toggleCheck(this)">
+              <div class="cb-box" data-checked="false"></div>
+              <span class="cb-text">1600 HRS — Wedding planner meeting</span>
+              <span class="cb-pri pri-stan">STAN</span>
+            </li>
+            <li onclick="toggleCheck(this)">
+              <div class="cb-box" data-checked="false"></div>
+              <span class="cb-text">Request new DB credentials (deadline Fri Mar 14)</span>
+              <span class="cb-pri pri-low">LOW</span>
+            </li>
+          </ul>
+
+          <div class="qa-divider"></div>
+          <div class="qa-label">// QUICK ACCESS</div>
+          <div class="qa-grid">
+            <a href="https://mail.google.com/mail/u/0/#compose" target="_blank" class="qa-btn">
+              <span class="qa-icon">✉</span>COMPOSE EMAIL
+            </a>
+            <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" class="qa-btn">
+              <span class="qa-icon">📥</span>EMAIL INBOX
+            </a>
+            <a href="https://calendar.google.com/calendar/r/day" target="_blank" class="qa-btn">
+              <span class="qa-icon">📅</span>CALENDAR TODAY
+            </a>
+            <a href="https://app.slack.com" target="_blank" class="qa-btn">
+              <span class="qa-icon">💬</span>SLACK
+            </a>
+            <a href="https://www.notion.so/30369405125880930a0afd216612d56af" target="_blank" class="qa-btn">
+              <span class="qa-icon">🗺</span>PIPELINE
+            </a>
+            <a href="https://calendar.google.com/calendar/event?eid=MWIxcWNpY2p0YTQzOGw3ZWUwdmxsMnNjcjNfMjAyNjAzMTJUMTcwMDAwWiBqZXJlbXkuY21pZWxAaGFwcHlyb2JvdC5haQ" target="_blank" class="qa-btn">
+              <span class="qa-icon">📊</span>AE FORECAST
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div class="grid-2">
+
+      <!-- MARKETS -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">// MARKETS — 11 MAR 2026</span>
+          <a href="https://finance.yahoo.com" target="_blank" class="panel-link">YAHOO FINANCE &gt;</a>
+        </div>
+        <div class="panel-body">
+          <table class="market-table">
+            <tbody>
+              <tr onclick="window.open('https://finance.yahoo.com/quote/%5EGSPC/','_blank')" style="cursor:pointer">
+                <td class="ticker-col">S&amp;P 500</td>
+                <td class="price-col">6,903.16</td>
+                <td class="chg-col down">−42.97</td>
+                <td class="pct-col down">▼ −0.62%</td>
+              </tr>
+              <tr onclick="window.open('https://finance.yahoo.com/quote/PLTR/','_blank')" style="cursor:pointer">
+                <td class="ticker-col">PLTR</td>
+                <td class="price-col">$151.14</td>
+                <td class="chg-col down">−4.24</td>
+                <td class="pct-col down">▼ −2.74%</td>
+              </tr>
+              <tr onclick="window.open('https://finance.yahoo.com/quote/TSLA/','_blank')" style="cursor:pointer">
+                <td class="ticker-col">TSLA</td>
+                <td class="price-col">$400.33</td>
+                <td class="chg-col flat-c">+0.33</td>
+                <td class="pct-col flat-c">▶ ~flat</td>
+              </tr>
+              <tr onclick="window.open('https://finance.yahoo.com/quote/UNH/','_blank')" style="cursor:pointer">
+                <td class="ticker-col">UNH</td>
+                <td class="price-col">$287.30</td>
+                <td class="chg-col up">+3.10</td>
+                <td class="pct-col up">▲ +1.09%</td>
+              </tr>
+              <tr onclick="window.open('https://finance.yahoo.com/quote/DFTX/','_blank')" style="cursor:pointer">
+                <td class="ticker-col">DFTX</td>
+                <td class="price-col">$19.39</td>
+                <td class="chg-col up">+1.04</td>
+                <td class="pct-col up">▲ +5.67% 🔥</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- COMMS -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">// COMMS — GMAIL</span>
+          <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" class="panel-link">OPEN INBOX &gt;</a>
+        </div>
+        <div class="panel-body">
+
+          <div class="email-item">
+            <div class="email-top">
+              <span class="email-from">Alex Dich · Quad</span>
+              <span class="email-time">TODAY · 14:51</span>
+            </div>
+            <div class="email-subject">RE: HappyRobot Trial period</div>
+            <div class="email-actions">
+              <span class="badge badge-confirmed" style="font-size:9px;">🔴 CRIT</span>
+              <a href="https://mail.google.com/mail/u/0/#search/from%3AADICH%40quad.com" target="_blank" class="email-btn reply">REPLY</a>
+              <a href="https://mail.google.com/mail/u/0/#inbox/19cdd61e2a47f1a8" target="_blank" class="email-btn">READ</a>
+            </div>
+          </div>
+
+          <div class="email-item">
+            <div class="email-top">
+              <span class="email-from">Loom · Walmart Signal</span>
+              <span class="email-time">TODAY · 07:44</span>
+            </div>
+            <div class="email-subject">Your pitch video was viewed — Cmiel_HappyRobot x Walmart | 3.5.26</div>
+            <div class="email-actions">
+              <span class="badge badge-prep" style="font-size:9px;">🟡 HOT SIGNAL</span>
+              <a href="https://mail.google.com/mail/u/0/#inbox/19cdd245664fdabf" target="_blank" class="email-btn">READ</a>
+            </div>
+          </div>
+
+          <div class="email-item">
+            <div class="email-top">
+              <span class="email-from">Dennis Stiles · Quad</span>
+              <span class="email-time">TUE · 19:39</span>
+            </div>
+            <div class="email-subject">Re: happyrobot next steps</div>
+            <div class="email-actions">
+              <span class="badge badge-prep" style="font-size:9px;">🟠 HIGH</span>
+              <a href="https://mail.google.com/mail/u/0/#inbox/19cd9434fd4612fe" target="_blank" class="email-btn reply">REPLY</a>
+              <a href="https://mail.google.com/mail/u/0/#inbox/19cd9434fd4612fe" target="_blank" class="email-btn">READ</a>
+            </div>
+          </div>
+
+          <div class="email-item">
+            <div class="email-top">
+              <span class="email-from">Brooke Adair · HappyRobot</span>
+              <span class="email-time">TUE · 22:22</span>
+            </div>
+            <div class="email-subject">Updated: AE Forecast @ Fri Mar 13, 10am–11am CDT</div>
+            <div class="email-actions">
+              <span class="badge badge-starred" style="font-size:9px;">★ PREP NEEDED</span>
+              <a href="https://mail.google.com/mail/u/0/#inbox/19cd9d8ab1ae0123" target="_blank" class="email-btn">READ</a>
+            </div>
+          </div>
+
+          <div class="email-item">
+            <div class="email-top">
+              <span class="email-from">Bill Piers · BJ's Wholesale</span>
+              <span class="email-time">TUE · 18:54</span>
+            </div>
+            <div class="email-subject">RE: Great connecting today — deck + demo link</div>
+            <div class="email-actions">
+              <span class="badge badge-internal" style="font-size:9px;border-color:#6b7f9e;color:#6b7f9e;">STAN · WATCHING</span>
+              <a href="https://mail.google.com/mail/u/0/#inbox/19cd91a18c1110e0" target="_blank" class="email-btn">READ</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div><!-- end tab-schedule -->
+
+  <!-- COMMS TAB -->
+  <div id="tab-comms" class="tab-section">
+    <div class="panel" style="max-width:800px;">
+      <div class="panel-header">
+        <span class="panel-title">// ALL COMMS — GMAIL</span>
+        <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" class="panel-link">OPEN INBOX &gt;</a>
+      </div>
+      <div class="panel-body">
+        <div class="email-item">
+          <div class="email-top"><span class="email-from">Alex Dich · Quad</span><span class="email-time">TODAY · 14:51</span></div>
+          <div class="email-subject">RE: HappyRobot Trial period — replied with comments</div>
+          <div class="email-actions">
+            <span class="badge badge-confirmed" style="font-size:9px;">🔴 CRIT — REPLY NOW</span>
+            <a href="https://mail.google.com/mail/u/0/#search/from%3AADICH%40quad.com" target="_blank" class="email-btn reply">REPLY</a>
+          </div>
+        </div>
+        <div class="email-item">
+          <div class="email-top"><span class="email-from">Loom Notification</span><span class="email-time">TODAY · 07:44</span></div>
+          <div class="email-subject">Walmart pitch video viewed for first time — 11 Mar 2026</div>
+          <div class="email-actions">
+            <span class="badge badge-prep" style="font-size:9px;">HOT SIGNAL</span>
+            <a href="https://mail.google.com/mail/u/0/#inbox/19cdd245664fdabf" target="_blank" class="email-btn">VIEW</a>
+          </div>
+        </div>
+        <div class="email-item">
+          <div class="email-top"><span class="email-from">Dennis Stiles · Quad</span><span class="email-time">TUE · 19:39</span></div>
+          <div class="email-subject">Re: happyrobot next steps — running few mins late</div>
+          <div class="email-actions">
+            <span class="badge badge-prep" style="font-size:9px;">HIGH</span>
+            <a href="https://mail.google.com/mail/u/0/#inbox/19cd9434fd4612fe" target="_blank" class="email-btn reply">REPLY</a>
+          </div>
+        </div>
+        <div class="email-item">
+          <div class="email-top"><span class="email-from">Bill Piers · BJ's Wholesale</span><span class="email-time">TUE · 18:54</span></div>
+          <div class="email-subject">RE: Great connecting today — "Haven't found a great fit on logistics yet"</div>
+          <div class="email-actions">
+            <span class="badge badge-internal" style="font-size:9px;color:#6b7f9e;border-color:#2a3a50;">WATCHING — NO ACTION YET</span>
+          </div>
+        </div>
+        <div class="email-item">
+          <div class="email-top"><span class="email-from">Oriol Bermejo</span><span class="email-time">TUE · 20:38</span></div>
+          <div class="email-subject">Accepted: Oriol / Jeremy intro @ Wed Mar 11 11am CDT</div>
+          <div class="email-actions">
+            <span class="badge badge-confirmed" style="font-size:9px;">CONFIRMED</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARKETS TAB -->
+  <div id="tab-markets" class="tab-section">
+    <div class="panel" style="max-width:600px;">
+      <div class="panel-header">
+        <span class="panel-title">// MARKETS — 11 MAR 2026</span>
+        <a href="https://finance.yahoo.com" target="_blank" class="panel-link">YAHOO FINANCE &gt;</a>
+      </div>
+      <div class="panel-body">
+        <table class="market-table" style="width:100%">
+          <thead>
+            <tr style="border-bottom:1px solid #1a2535;">
+              <td style="color:#6b7f9e;font-size:9px;letter-spacing:2px;padding:6px;">TICKER</td>
+              <td style="color:#6b7f9e;font-size:9px;letter-spacing:2px;padding:6px;text-align:right;">PRICE</td>
+              <td style="color:#6b7f9e;font-size:9px;letter-spacing:2px;padding:6px;text-align:right;">CHG $</td>
+              <td style="color:#6b7f9e;font-size:9px;letter-spacing:2px;padding:6px;text-align:right;">CHG %</td>
+              <td style="color:#6b7f9e;font-size:9px;letter-spacing:2px;padding:6px;text-align:right;">LINK</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr onclick="window.open('https://finance.yahoo.com/quote/%5EGSPC/','_blank')" style="cursor:pointer">
+              <td class="ticker-col">S&amp;P 500</td><td class="price-col">6,903.16</td>
+              <td class="chg-col down">−42.97</td><td class="pct-col down">▼ −0.62%</td>
+              <td style="text-align:right"><a href="https://finance.yahoo.com/quote/%5EGSPC/" target="_blank" class="panel-link">↗</a></td>
+            </tr>
+            <tr onclick="window.open('https://finance.yahoo.com/quote/PLTR/','_blank')" style="cursor:pointer">
+              <td class="ticker-col">PLTR</td><td class="price-col">$151.14</td>
+              <td class="chg-col down">−4.24</td><td class="pct-col down">▼ −2.74%</td>
+              <td style="text-align:right"><a href="https://finance.yahoo.com/quote/PLTR/" target="_blank" class="panel-link">↗</a></td>
+            </tr>
+            <tr onclick="window.open('https://finance.yahoo.com/quote/TSLA/','_blank')" style="cursor:pointer">
+              <td class="ticker-col">TSLA</td><td class="price-col">$400.33</td>
+              <td class="chg-col flat-c">+0.33</td><td class="pct-col flat-c">▶ ~flat</td>
+              <td style="text-align:right"><a href="https://finance.yahoo.com/quote/TSLA/" target="_blank" class="panel-link">↗</a></td>
+            </tr>
+            <tr onclick="window.open('https://finance.yahoo.com/quote/UNH/','_blank')" style="cursor:pointer">
+              <td class="ticker-col">UNH</td><td class="price-col">$287.30</td>
+              <td class="chg-col up">+3.10</td><td class="pct-col up">▲ +1.09%</td>
+              <td style="text-align:right"><a href="https://finance.yahoo.com/quote/UNH/" target="_blank" class="panel-link">↗</a></td>
+            </tr>
+            <tr onclick="window.open('https://finance.yahoo.com/quote/DFTX/','_blank')" style="cursor:pointer">
+              <td class="ticker-col">DFTX</td><td class="price-col">$19.39</td>
+              <td class="chg-col up">+1.04</td><td class="pct-col up">▲ +5.67% 🔥</td>
+              <td style="text-align:right"><a href="https://finance.yahoo.com/quote/DFTX/" target="_blank" class="panel-link">↗</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top:14px;color:#6b7f9e;font-size:10px;line-height:1.8;">
+          <div>PLTR: Down today but +7% WoW, +12% MoM — healthy pullback from recent run.</div>
+          <div>UNH: +1% today but −47% past year, −15% YTD. Still searching for a floor.</div>
+          <div>DFTX: Best performer on the watchlist today at +5.67%.</div>
+          <div>Market: Mild risk-off. S&P off 0.62% on no major catalyst.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNALS TAB -->
+  <div id="tab-signals" class="tab-section">
+    <div class="panel" style="max-width:700px;">
+      <div class="panel-header">
+        <span class="panel-title">// SIGNALS — TODAY</span>
+      </div>
+      <div class="panel-body">
+        <div class="email-item">
+          <div class="email-top">
+            <span class="email-from">🔥 Walmart — Loom Pitch View</span>
+            <span class="email-time">TODAY · 07:44</span>
+          </div>
+          <div class="email-subject">Your pitch video "Cmiel_HappyRobot x Walmart | 3.5.26" was viewed for the first time this morning. Unknown viewer at Walmart.</div>
+          <div class="email-actions">
+            <span class="badge badge-prep" style="font-size:9px;">ACTION: FOLLOW UP TODAY</span>
+            <a href="https://mail.google.com/mail/u/0/#inbox/19cdd245664fdabf" target="_blank" class="email-btn">VIEW EMAIL</a>
+          </div>
+        </div>
+        <div class="email-item">
+          <div class="email-top">
+            <span class="email-from">📧 Alex Dich — Quad Reply</span>
+            <span class="email-time">TODAY · 14:51</span>
+          </div>
+          <div class="email-subject">Alex (Supply Chain Manager) replied to the trial thread just now. Momentum is live — this needs same-day response to lock Mar 16 start.</div>
+          <div class="email-actions">
+            <span class="badge badge-confirmed" style="font-size:9px;">🔴 CRITICAL</span>
+            <a href="https://mail.google.com/mail/u/0/#search/from%3Aquad.com" target="_blank" class="email-btn reply">REPLY NOW</a>
+          </div>
+        </div>
+        <div class="email-item">
+          <div class="email-top">
+            <span class="email-from">📅 Target Intro — Tomorrow</span>
+            <span class="email-time">THU 09:05 CDT</span>
+          </div>
+          <div class="email-subject">HappyRobot x Target intro with Dexter Newman tomorrow morning — prep tonight or first thing tomorrow.</div>
+          <div class="email-actions">
+            <span class="badge badge-prep" style="font-size:9px;">PREP NEEDED</span>
+            <a href="https://target.zoom.us/j/97366888608?pwd=bhy80YEbPDRnVwgk1W827yuaOyWeUb.1" target="_blank" class="email-btn">JOIN ZOOM</a>
+          </div>
+        </div>
+        <div class="email-item">
+          <div class="email-top">
+            <span class="email-from">📊 AE Forecast — Friday</span>
+            <span class="email-time">FRI 10:00 CDT</span>
+          </div>
+          <div class="email-subject">Deal-by-deal CQ review with Brooke. Come with close dates, ARR, stage, and next steps for each deal. Javier is OOO so attendance may be leaner.</div>
+          <div class="email-actions">
+            <span class="badge badge-starred" style="font-size:9px;">★ PREP TODAY</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIPELINE TAB -->
+  <div id="tab-pipeline" class="tab-section">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">// PIPELINE SNAPSHOT</span>
+      </div>
+      <div class="panel-body">
+        <table class="market-table" style="width:100%">
+          <thead>
+            <tr style="border-bottom:1px solid #1a2535;">
+              <td style="color:#6b7f9e;font-size:9px;letter-spacing:2px;padding:6px;">ACCOUNT</td>
+              <td style="color:#6b7f9e;font-size:9px;letter-spacing:2px;padding:6px;">STAGE</td>
+              <td style="color:#6b7f9e;font-size:9px;letter-spacing:2px;padding:6px;text-align:right;">EST. ARR</td>
+              <td style="color:#6b7f9e;font-size:9px;letter-spacing:2px;padding:6px;">STATUS</td>
+              <td style="color:#6b7f9e;font-size:9px;letter-spacing:2px;padding:6px;">NEXT ACTION</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="ticker-col">Quad</td>
+              <td style="color:#ff8c00;font-size:11px;">Trial</td>
+              <td style="text-align:right;color:#e8edf5;">$200K+</td>
+              <td><span style="color:#ff8c00;font-size:10px;">▲ HOT</span></td>
+              <td style="color:#a0b4cc;font-size:10px;">Reply Alex + send pilot agreement</td>
+            </tr>
+            <tr>
+              <td class="ticker-col">Walmart</td>
+              <td style="color:#6b7f9e;font-size:11px;">Discovery</td>
+              <td style="text-align:right;color:#e8edf5;">TBD</td>
+              <td><span style="color:#ffd700;font-size:10px;">◆ SIGNAL</span></td>
+              <td style="color:#a0b4cc;font-size:10px;">Follow up — pitch video viewed today</td>
+            </tr>
+            <tr>
+              <td class="ticker-col">Target</td>
+              <td style="color:#6b7f9e;font-size:11px;">Intro</td>
+              <td style="text-align:right;color:#e8edf5;">TBD</td>
+              <td><span style="color:#00d4ff;font-size:10px;">▷ ACTIVE</span></td>
+              <td style="color:#a0b4cc;font-size:10px;">Intro call Thu 0905 — prep tonight</td>
+            </tr>
+            <tr>
+              <td class="ticker-col">Hertz</td>
+              <td style="color:#6b7f9e;font-size:11px;">Sync</td>
+              <td style="text-align:right;color:#e8edf5;">TBD</td>
+              <td><span style="color:#00d4ff;font-size:10px;">▷ ACTIVE</span></td>
+              <td style="color:#a0b4cc;font-size:10px;">Sync Thu 1230 w/ Matthew Foster</td>
+            </tr>
+            <tr>
+              <td class="ticker-col">Loblaw</td>
+              <td style="color:#6b7f9e;font-size:11px;">MSA</td>
+              <td style="text-align:right;color:#e8edf5;">TBD</td>
+              <td><span style="color:#6b7f9e;font-size:10px;">◉ LEGAL</span></td>
+              <td style="color:#a0b4cc;font-size:10px;">MSA in progress (Christian handoff)</td>
+            </tr>
+            <tr>
+              <td class="ticker-col">Allegiant</td>
+              <td style="color:#6b7f9e;font-size:11px;">Outreach</td>
+              <td style="text-align:right;color:#e8edf5;">TBD</td>
+              <td><span style="color:#ff3b3b;font-size:10px;">✗ NO-SHOW</span></td>
+              <td style="color:#a0b4cc;font-size:10px;">Reschedule Royden Wenger</td>
+            </tr>
+            <tr>
+              <td class="ticker-col">Kimberly-Clark</td>
+              <td style="color:#6b7f9e;font-size:11px;">Nurture</td>
+              <td style="text-align:right;color:#e8edf5;">TBD</td>
+              <td><span style="color:#6b7f9e;font-size:10px;">◉ WATCH</span></td>
+              <td style="color:#a0b4cc;font-size:10px;">Send peer examples when ready</td>
+            </tr>
+            <tr>
+              <td class="ticker-col">BJ's Wholesale</td>
+              <td style="color:#6b7f9e;font-size:11px;">Eval</td>
+              <td style="text-align:right;color:#e8edf5;">TBD</td>
+              <td><span style="color:#6b7f9e;font-size:10px;">◉ SLOW</span></td>
+              <td style="color:#a0b4cc;font-size:10px;">"No great fit yet" — monitor</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    SITREP · Generated WED 11 MAR 2026 · Data from Google Calendar · Gmail · Granola · Slack · Notion
+  </footer>
+
+</div><!-- end main -->
+
+<script>
+  // LIVE CLOCK
+  function updateClock() {
+    const now = new Date();
+    const opts = { timeZone: 'America/Chicago', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+    const t = now.toLocaleTimeString('en-US', opts);
+    const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+    const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    const d = days[now.getDay()];
+    const mo = months[now.getMonth()];
+    const dy = String(now.getDate()).padStart(2,'0');
+    const yr = now.getFullYear();
+    document.getElementById('clock').textContent = `${d} · ${dy} ${mo} ${yr} · ${t} CDT`;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // TAB NAV
+  function showTab(name, btn) {
+    document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('visible'));
+    document.querySelectorAll('#topbar nav button').forEach(b => b.classList.remove('active'));
+    const el = document.getElementById('tab-' + name);
+    if (el) el.classList.add('visible');
+    if (btn) btn.classList.add('active');
+  }
+
+  // CHECKLIST
+  function toggleCheck(li) {
+    const done = li.classList.toggle('done');
+    const box = li.querySelector('.cb-box');
+    box.textContent = done ? '✓' : '';
+  }
+  function resetChecklist() {
+    document.querySelectorAll('#checklist li').forEach(li => {
+      li.classList.remove('done');
+      li.querySelector('.cb-box').textContent = '';
+    });
+  }
+</script>
+</body>
+</html>
