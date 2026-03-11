@@ -5,6 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SITREP — Jeremy Cmiel</title>
 <style>
+  #auth-gate {
+    position: fixed; inset: 0; z-index: 9999;
+    background: #080d16;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 20px;
+  }
+  #auth-gate .logo { color: #00d4ff; font-family: 'Courier New', monospace; font-size: 28px; font-weight: bold; letter-spacing: 8px; }
+  #auth-gate .sub { color: #4a5a6a; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 3px; }
+  #auth-gate input {
+    background: #0d1520; border: 1px solid #1a2535; color: #e8edf5;
+    font-family: 'Courier New', monospace; font-size: 14px; letter-spacing: 2px;
+    padding: 12px 20px; width: 260px; text-align: center; outline: none;
+    border-radius: 2px;
+  }
+  #auth-gate input:focus { border-color: #00d4ff; }
+  #auth-gate .error { color: #ff4444; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; display: none; }
+  #auth-gate button {
+    background: #00d4ff; color: #080d16; border: none; cursor: pointer;
+    font-family: 'Courier New', monospace; font-size: 12px; font-weight: bold;
+    letter-spacing: 3px; padding: 10px 32px; border-radius: 2px;
+  }
+  #auth-gate button:hover { background: #00b8d9; }
+</style>
+<script>
+  (function() {
+    if (sessionStorage.getItem('sitrep_auth') === '1') return;
+    document.addEventListener('DOMContentLoaded', function() {
+      var gate = document.getElementById('auth-gate');
+      var input = document.getElementById('auth-input');
+      var err = document.getElementById('auth-error');
+      function attempt() {
+        if (input.value === 'sitrep2026') {
+          sessionStorage.setItem('sitrep_auth', '1');
+          gate.style.display = 'none';
+        } else {
+          err.style.display = 'block';
+          input.value = '';
+          input.focus();
+        }
+      }
+      document.getElementById('auth-btn').addEventListener('click', attempt);
+      input.addEventListener('keydown', function(e) { if (e.key === 'Enter') attempt(); });
+      input.focus();
+    });
+  })();
+</script>
+<style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: #080d16; color: #e8edf5; font-family: 'Courier New', monospace; font-size: 13px; overflow-x: hidden; }
 
@@ -304,6 +351,15 @@
 </style>
 </head>
 <body>
+
+<!-- AUTH GATE -->
+<div id="auth-gate">
+  <div class="logo">SITREP</div>
+  <div class="sub">AUTHORIZED ACCESS ONLY</div>
+  <input type="password" id="auth-input" placeholder="enter password" autocomplete="off" />
+  <div class="error" id="auth-error">ACCESS DENIED — INVALID CREDENTIALS</div>
+  <button id="auth-btn">AUTHENTICATE</button>
+</div>
 
 <!-- TOP BAR -->
 <div id="topbar">
