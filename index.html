@@ -1,420 +1,844 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SITREP — March 12, 2026</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0a0a0f;--panel:#12121a;--panel-hover:#181828;--accent:#00d4ff;--accent-dim:#00a8cc;--text:#c8ccd4;--text-bright:#e8ecf4;--text-muted:#6a7080;--green:#00e676;--yellow:#ffca28;--red:#ff5252;--orange:#ff9100;--purple:#b388ff;--border:#1e1e2e;--tab-active:#1a1a2e}
-body{font-family:'JetBrains Mono',monospace;background:var(--bg);color:var(--text);font-size:13px;line-height:1.6;overflow-x:hidden;min-height:100vh}
-a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;opacity:.9}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SITREP — Thursday, March 12, 2026</title>
+  <style>
+    :root {
+      --bg: #0a0e1a;
+      --surface: #111827;
+      --surface2: #1a2235;
+      --border: #1e2d45;
+      --accent: #2563eb;
+      --accent2: #7c3aed;
+      --red: #ef4444;
+      --green: #22c55e;
+      --yellow: #eab308;
+      --orange: #f97316;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --dim: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
 
-/* TOPBAR */
-.topbar{position:fixed;top:0;left:0;right:0;height:50px;background:linear-gradient(135deg,#0e0e18,#14142a);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:200}
-.brand{font-size:18px;font-weight:700;letter-spacing:6px;color:var(--accent)}
-.brand-sub{color:var(--text-muted);font-weight:300;font-size:10px;letter-spacing:2px;margin-left:12px}
-.clock{font-size:12px;color:var(--text-muted);letter-spacing:1px}
-.clock b{color:var(--text-bright);font-weight:500}
+    /* ── Header ─────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-badge {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .logo-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #fff;
+    }
+    .header-meta {
+      text-align: right;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .header-meta strong { color: var(--dim); font-size: 13px; }
 
-/* TICKER */
-.ticker-wrap{position:fixed;top:50px;left:0;right:0;height:28px;background:#0d0d16;border-bottom:1px solid var(--border);overflow:hidden;z-index:199}
-.ticker{display:flex;animation:scroll 50s linear infinite;white-space:nowrap;height:28px;align-items:center}
-.ticker-item{padding:0 28px;font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:6px}
-.ticker-item .lbl{color:var(--text-bright);font-weight:600}
-.up{color:var(--green)}.down{color:var(--red)}.flat{color:var(--text-muted)}
-@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    /* ── Priority Banner ─────────────────────── */
+    .priority-banner {
+      background: linear-gradient(135deg, #7f1d1d 0%, #1e1b4b 100%);
+      border: 1px solid #dc2626;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 16px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .priority-icon {
+      font-size: 22px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .priority-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #fca5a5;
+      text-transform: uppercase;
+    }
+    .priority-headline {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin: 3px 0 4px;
+    }
+    .priority-body {
+      font-size: 13px;
+      color: #fecaca;
+      line-height: 1.55;
+    }
 
-/* MAIN */
-.main{margin-top:78px;padding:16px 20px 40px;max-width:1600px;margin-left:auto;margin-right:auto}
+    /* ── Tabs ────────────────────────────────── */
+    .tabs {
+      display: flex;
+      gap: 2px;
+      padding: 0 24px;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+    .tab-btn {
+      padding: 10px 18px;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active {
+      color: #fff;
+      border-bottom-color: var(--accent);
+    }
+    .tab-content { display: none; padding: 20px 24px 40px; }
+    .tab-content.active { display: block; }
 
-/* PRIORITY BOX */
-.priority{background:linear-gradient(135deg,#1a0a0a 0%,#12121a 60%);border:1px solid #3a1515;border-left:4px solid var(--red);border-radius:6px;padding:16px 20px;margin-bottom:16px;position:relative}
-.priority::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),transparent);border-radius:6px 6px 0 0}
-.pri-label{font-size:10px;letter-spacing:3px;color:var(--red);font-weight:700;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:8px}
-.pri-label .dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.pri-text{font-size:14px;color:var(--text-bright);font-weight:500;line-height:1.7}
-.pri-sub{font-size:10px;color:var(--text-muted);margin-top:6px}
+    /* ── Grid ────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .col-span-2 { grid-column: span 2; }
 
-/* WEATHER BAR */
-.weather-bar{display:flex;align-items:center;gap:16px;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:10px 16px;margin-bottom:16px;flex-wrap:wrap}
-.weather-bar .wx-label{font-size:10px;letter-spacing:2px;color:var(--accent);font-weight:600;text-transform:uppercase}
-.weather-bar .wx-main{color:var(--text-bright);font-size:13px;font-weight:500}
-.weather-bar .wx-detail{color:var(--text-muted);font-size:11px}
-.wx-warn{background:#3a2a0a;color:var(--orange);font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;letter-spacing:1px}
+    @media (max-width: 768px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+      .col-span-2 { grid-column: span 1; }
+    }
 
-/* TABS */
-.tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:2px solid var(--border);overflow-x:auto}
-.tab{padding:10px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;user-select:none}
-.tab:hover{color:var(--text-bright);background:var(--panel)}
-.tab.active{color:var(--accent);border-bottom-color:var(--accent);background:var(--tab-active)}
-.tab-content{display:none}.tab-content.active{display:block}
+    /* ── Card ────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface2);
+    }
+    .card-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .card-body { padding: 14px 16px; }
 
-/* PANELS */
-.panel{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:16px;margin-bottom:16px}
-.panel:hover{border-color:#2a2a3e}
-.panel-hdr{font-size:10px;letter-spacing:3px;color:var(--accent);font-weight:700;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
-.panel-hdr .ico{font-size:14px}
+    /* ── Ticker Row ──────────────────────────── */
+    .ticker-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ticker-row:last-child { border-bottom: none; }
+    .ticker-name { font-weight: 600; font-size: 14px; }
+    .ticker-sub { font-size: 11px; color: var(--muted); }
+    .ticker-price { text-align: right; }
+    .ticker-value { font-size: 15px; font-weight: 700; }
+    .ticker-change { font-size: 12px; margin-top: 1px; }
+    .up { color: var(--green); }
+    .dn { color: var(--red); }
+    .warn { color: var(--orange); }
 
-/* GRID LAYOUTS */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.g3{display:grid;grid-template-columns:28% 44% 28%;gap:16px}
+    /* ── Weather ─────────────────────────────── */
+    .weather-main {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+    }
+    .weather-icon { font-size: 46px; line-height: 1; }
+    .weather-temp { font-size: 36px; font-weight: 800; color: #fff; }
+    .weather-desc { font-size: 13px; color: var(--dim); margin-top: 2px; }
+    .weather-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 16px;
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+    }
+    .weather-detail-item { }
+    .weather-detail-label { font-size: 11px; color: var(--muted); }
+    .weather-detail-value { font-size: 13px; font-weight: 600; color: var(--text); }
+    .weather-alert {
+      margin: 0 16px 14px;
+      padding: 8px 12px;
+      background: rgba(234,179,8,0.12);
+      border: 1px solid rgba(234,179,8,0.4);
+      border-radius: 6px;
+      font-size: 12px;
+      color: var(--yellow);
+    }
 
-/* EVENTS */
-.evt{padding:8px 0;border-bottom:1px solid #1a1a28;display:flex;gap:12px;align-items:flex-start}
-.evt:last-child{border-bottom:none}
-.evt-dot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0}
-.evt-time{color:var(--accent);font-weight:600;font-size:12px;min-width:80px}
-.evt-title{color:var(--text-bright);font-weight:500;font-size:12px}
-.evt-meta{color:var(--text-muted);font-size:10px;margin-top:2px}
+    /* ── News Items ──────────────────────────── */
+    .news-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-toggle {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 12px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--text);
+      transition: background 0.15s;
+    }
+    .news-toggle:hover { background: var(--surface2); }
+    .news-toggle-left { flex: 1; min-width: 0; }
+    .news-category {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .cat-geopolitical { color: #f87171; }
+    .cat-markets { color: #60a5fa; }
+    .cat-tech { color: #a78bfa; }
+    .cat-policy { color: #34d399; }
+    .cat-energy { color: #fb923c; }
+    .news-headline {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e2e8f0;
+      line-height: 1.4;
+    }
+    .news-toggle-arrow {
+      color: var(--muted);
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: transform 0.2s;
+    }
+    .news-item.open .news-toggle-arrow { transform: rotate(90deg); }
+    .news-body {
+      display: none;
+      padding: 0 16px 14px;
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 1.6;
+      background: var(--surface2);
+    }
+    .news-item.open .news-body { display: block; }
 
-/* EXPANDABLE NEWS */
-.news-item{border-bottom:1px solid #1a1a28;overflow:hidden}
-.news-item:last-child{border-bottom:none}
-.news-hdr{padding:10px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;user-select:none}
-.news-hdr:hover{opacity:.85}
-.news-title{color:var(--text-bright);font-weight:500;font-size:12px;flex:1;line-height:1.5}
-.news-arrow{color:var(--text-muted);font-size:14px;transition:transform .2s;flex-shrink:0}
-.news-item.open .news-arrow{transform:rotate(180deg)}
-.news-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
-.news-item.open .news-body{max-height:400px}
-.news-body-inner{padding:0 0 10px;color:var(--text-muted);font-size:11px;line-height:1.6}
-.tag{font-size:9px;padding:2px 7px;border-radius:3px;font-weight:600;display:inline-block;margin-right:6px;letter-spacing:.5px}
-.tag-ai{background:#1a0a3a;color:var(--purple)}
-.tag-geo{background:#3a1515;color:var(--red)}
-.tag-mkt{background:#2a1a0a;color:var(--orange)}
-.tag-prod{background:#0a2a1a;color:var(--green)}
-.tag-deal{background:#0a2a3a;color:var(--accent)}
-.tag-personal{background:#2a2a0a;color:var(--yellow)}
-.tag-spam{background:#1a1a1a;color:var(--text-muted)}
-.tag-hot{background:#3a1515;color:var(--red)}
+    /* ── Section Label ───────────────────────── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 20px 0 10px;
+    }
+    .section-label:first-child { margin-top: 0; }
 
-/* MARKET TABLE */
-.mkt-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1a1a28}
-.mkt-row:last-child{border-bottom:none}
-.mkt-name{color:var(--text-bright);font-weight:500;font-size:12px}
-.mkt-val{font-weight:600;font-size:13px}
-.mkt-chg{font-size:10px;font-weight:500;margin-left:6px}
-.mkt-note{margin-top:10px;font-size:10px;color:var(--text-muted);line-height:1.5;padding-top:8px;border-top:1px solid var(--border)}
+    /* ── Pill ────────────────────────────────── */
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+    .pill-red { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+    .pill-orange { background: rgba(249,115,22,0.15); color: #fb923c; border: 1px solid rgba(249,115,22,0.3); }
+    .pill-blue { background: rgba(37,99,235,0.15); color: #60a5fa; border: 1px solid rgba(37,99,235,0.3); }
+    .pill-purple { background: rgba(124,58,237,0.15); color: #a78bfa; border: 1px solid rgba(124,58,237,0.3); }
+    .pill-green { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
 
-/* ACTION ITEMS */
-.action{padding:7px 0;border-bottom:1px solid #1a1a28;display:flex;gap:8px;align-items:flex-start}
-.action:last-child{border-bottom:none}
-.action-chk{color:var(--accent);margin-top:1px;font-size:11px;flex-shrink:0}
-.action-txt{color:var(--text);font-size:11px;line-height:1.5}
-.action-deal{font-weight:600;font-size:10px}
+    /* ── Summary Callout ─────────────────────── */
+    .callout {
+      background: var(--surface2);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 10px 14px;
+      margin: 12px 0;
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 1.55;
+    }
+    .callout strong { color: var(--text); }
 
-/* COMMS */
-.comm{padding:8px 0;border-bottom:1px solid #1a1a28}
-.comm:last-child{border-bottom:none}
-.comm-from{color:var(--text-bright);font-weight:500;font-size:11px;display:flex;align-items:center;gap:6px}
-.comm-subj{color:var(--text);font-size:11px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.comm-snip{color:var(--text-muted);font-size:10px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-
-/* RESPONSIVE */
-@media(max-width:900px){.g2,.g3{grid-template-columns:1fr}
-  .main{padding:12px 10px 40px}.weather-bar{flex-direction:column;align-items:flex-start;gap:6px}
-  .tabs{gap:0}.tab{padding:8px 12px;font-size:10px}}
-@media(min-width:901px) and (max-width:1100px){.g3{grid-template-columns:1fr 1fr}.g3>.panel:last-child{grid-column:1/-1}}
-@media(min-width:1440px){.main{padding:20px 32px 40px}body{font-size:14px}}
-@media(min-width:1920px){.main{max-width:1920px;padding:24px 48px 40px}}
-</style>
+    /* ── Stat Row ────────────────────────────── */
+    .stat-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-label { color: var(--dim); }
+    .stat-value { font-weight: 600; }
+  </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div><span class="brand">SITREP</span><span class="brand-sub">DAILY BRIEFING</span></div>
-  <div class="clock"><b id="clock"></b></div>
+<!-- ═══ HEADER ════════════════════════════════════════ -->
+<header>
+  <div class="logo">
+    <span class="logo-badge">SITREP</span>
+    <span class="logo-title">Daily Intelligence Brief</span>
+  </div>
+  <div class="header-meta">
+    <strong>Thursday, March 12, 2026</strong><br>
+    Morning Edition · Minneapolis, MN
+  </div>
+</header>
+
+<!-- ═══ PRIORITY BANNER ═══════════════════════════════ -->
+<div class="priority-banner">
+  <div class="priority-icon">🚨</div>
+  <div>
+    <div class="priority-label">Top Signal</div>
+    <div class="priority-headline">US-Iran War Drives Oil Above $100 — Markets Hit 2026 Lows</div>
+    <div class="priority-body">
+      The U.S.-Israeli military campaign against Iran has pushed Brent crude past $100/bbl after tanker attacks in Iraqi waters. Iran's supreme leader is threatening to keep the Strait of Hormuz closed, with warnings that prices could hit $200/bbl. All three major U.S. indexes closed at 2026 lows. The Fed is expected to hold rates next week. Trump signals talks with Iran are "possible."
+    </div>
+  </div>
 </div>
 
-<div class="ticker-wrap"><div class="ticker" id="ticker">
-  <div class="ticker-item"><span class="lbl">S&P 500</span> 5,572 <span class="down">▼ -0.76%</span></div>
-  <div class="ticker-item"><span class="lbl">DOW</span> 41,350 <span class="down">▼ -1.14%</span></div>
-  <div class="ticker-item"><span class="lbl">NASDAQ</span> 17,516 <span class="down">▼ -0.18%</span></div>
-  <div class="ticker-item"><span class="lbl">BTC</span> $74,000 <span class="up">▲ +2.1%</span></div>
-  <div class="ticker-item"><span class="lbl">BRENT</span> $100.20/bbl <span class="up">▲ +5.8%</span></div>
-  <div class="ticker-item"><span class="lbl">CPI</span> 2.4% YoY <span class="flat">— STEADY</span></div>
-  <div class="ticker-item"><span class="lbl">MPLS</span> 46°F Cloudy ⛅ Wind Warning Tonight</div>
-  <div class="ticker-item"><span class="lbl">▸</span> <span style="color:var(--text)">IEA releases 400M bbl from reserves — oil still above $100</span></div>
-  <div class="ticker-item"><span class="lbl">▸</span> <span style="color:var(--text)">Iran Day 12: Iraq oil port shut down, Gulf shipping attacked</span></div>
-  <div class="ticker-item"><span class="lbl">▸</span> <span style="color:var(--text)">GPT-5.4 launched: 1M token context, $2.50/M input</span></div>
-  <!-- dupe for scroll -->
-  <div class="ticker-item"><span class="lbl">S&P 500</span> 5,572 <span class="down">▼ -0.76%</span></div>
-  <div class="ticker-item"><span class="lbl">DOW</span> 41,350 <span class="down">▼ -1.14%</span></div>
-  <div class="ticker-item"><span class="lbl">NASDAQ</span> 17,516 <span class="down">▼ -0.18%</span></div>
-  <div class="ticker-item"><span class="lbl">BTC</span> $74,000 <span class="up">▲ +2.1%</span></div>
-  <div class="ticker-item"><span class="lbl">BRENT</span> $100.20/bbl <span class="up">▲ +5.8%</span></div>
-  <div class="ticker-item"><span class="lbl">CPI</span> 2.4% YoY <span class="flat">— STEADY</span></div>
-  <div class="ticker-item"><span class="lbl">MPLS</span> 46°F Cloudy ⛅ Wind Warning Tonight</div>
-  <div class="ticker-item"><span class="lbl">▸</span> <span style="color:var(--text)">IEA releases 400M bbl from reserves — oil still above $100</span></div>
-  <div class="ticker-item"><span class="lbl">▸</span> <span style="color:var(--text)">Iran Day 12: Iraq oil port shut down, Gulf shipping attacked</span></div>
-  <div class="ticker-item"><span class="lbl">▸</span> <span style="color:var(--text)">GPT-5.4 launched: 1M token context, $2.50/M input</span></div>
-</div></div>
-
-<div class="main">
-
-<!-- PRIORITY -->
-<div class="priority">
-  <div class="pri-label"><span class="dot"></span> PRIORITY ALPHA</div>
-  <div class="pri-text">HappyRobot × Target Intro call TODAY at 9:05 AM CT with Dexter Newman (Zoom). Quad trial targeting March 16 start — check platform limitations and share pilot agreement before Josh returns March 23. Patrick & Alex confirmed meeting tomorrow to align, then circling back to Brooke.</div>
-  <div class="pri-sub">Sources: Google Calendar today · Brooke fwd email from Target (Mar 11) · Granola action items (Mar 10 sync)</div>
-</div>
-
-<!-- WEATHER -->
-<div class="weather-bar">
-  <div class="wx-label">📍 MINNEAPOLIS, MN</div>
-  <div class="wx-main">46°F — Mostly Cloudy, Breezy</div>
-  <div class="wx-detail">60% chance of rain · Winds S/SE 15-20 mph, gusts to 30 mph</div>
-  <div class="wx-warn">⚠ HIGH WIND WARNING TONIGHT — Gusts to 55 mph after midnight</div>
-</div>
-
-<!-- TABS -->
+<!-- ═══ TABS ══════════════════════════════════════════ -->
 <div class="tabs">
-  <div class="tab active" onclick="switchTab('overview')">Overview</div>
-  <div class="tab" onclick="switchTab('markets')">Markets</div>
-  <div class="tab" onclick="switchTab('tech')">Tech &amp; AI</div>
-  <div class="tab" onclick="switchTab('geo')">Geopolitical</div>
+  <button class="tab-btn active" onclick="switchTab('overview', this)">📋 Overview</button>
+  <button class="tab-btn" onclick="switchTab('markets', this)">📈 Markets</button>
+  <button class="tab-btn" onclick="switchTab('tech', this)">🤖 Tech & AI</button>
+  <button class="tab-btn" onclick="switchTab('geo', this)">🌍 Geopolitical</button>
 </div>
 
-<!-- ===== OVERVIEW TAB ===== -->
-<div class="tab-content active" id="tab-overview">
-  <div class="g3">
-    <!-- SCHEDULE -->
-    <div class="panel">
-      <div class="panel-hdr"><span class="ico">📅</span> TODAY'S SCHEDULE</div>
-      <div class="evt">
-        <div class="evt-dot" style="background:var(--text-muted)"></div>
-        <div><div class="evt-time">ALL DAY</div></div>
-        <div><div class="evt-title">Working from Home</div></div>
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- TAB: OVERVIEW                                       -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="tab-overview" class="tab-content active">
+  <div class="grid-2">
+
+    <!-- Weather -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">🌦 Minneapolis, MN</span>
+        <span class="pill pill-orange">⚠ Wind Warning Tonight</span>
       </div>
-      <div class="evt">
-        <div class="evt-dot" style="background:var(--red)"></div>
-        <div><div class="evt-time">9:05 AM</div></div>
+      <div class="weather-main">
+        <div class="weather-icon">🌫️</div>
         <div>
-          <div class="evt-title">HappyRobot × Target Intro</div>
-          <div class="evt-meta">Zoom · 25 min · w/ Dexter Newman (Target)</div>
+          <div class="weather-temp">40°F</div>
+          <div class="weather-desc">Foggy · Clouds increasing</div>
         </div>
       </div>
-      <div style="padding:10px 0;font-size:11px;color:var(--text-muted);text-align:center;border-top:1px solid #1a1a28;margin-top:4px">Light calendar day — deep work afternoon</div>
+      <div class="weather-details">
+        <div class="weather-detail-item">
+          <div class="weather-detail-label">Today's High</div>
+          <div class="weather-detail-value">46°F</div>
+        </div>
+        <div class="weather-detail-item">
+          <div class="weather-detail-label">Tonight Low</div>
+          <div class="weather-detail-value">30°F</div>
+        </div>
+        <div class="weather-detail-item">
+          <div class="weather-detail-label">Precip Chance</div>
+          <div class="weather-detail-value warn">60% Rain/Snow</div>
+        </div>
+        <div class="weather-detail-item">
+          <div class="weather-detail-label">Wind Gusts</div>
+          <div class="weather-detail-value warn">Up to 55 mph</div>
+        </div>
+        <div class="weather-detail-item">
+          <div class="weather-detail-label">Tomorrow</div>
+          <div class="weather-detail-value">Partly Sunny, 38°F</div>
+        </div>
+        <div class="weather-detail-item">
+          <div class="weather-detail-label">Conditions</div>
+          <div class="weather-detail-value">Breezy, 45 mph gusts</div>
+        </div>
+      </div>
+      <div class="weather-alert">
+        <strong>⚠ HIGH WIND WARNING</strong> — effective March 13, 12:00 AM–10:00 AM. Gusts up to 55 mph.
+      </div>
     </div>
 
-    <!-- COMMS TRIAGE -->
-    <div class="panel">
-      <div class="panel-hdr"><span class="ico">📧</span> COMMS TRIAGE</div>
-      <div class="comm">
-        <div class="comm-from"><span class="tag tag-hot">HOT</span> Brooke Adair (yesterday)</div>
-        <div class="comm-subj">Fwd: [EXTERNAL] HappyRobot | Post-Manifest check in</div>
-        <div class="comm-snip">Target: Patrick & Alex chatting tomorrow, will circle back</div>
+    <!-- Quick Markets -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">📊 Market Snapshot</span>
+        <span class="pill pill-red">All Indexes ▼ 2026 Lows</span>
       </div>
-      <div class="comm">
-        <div class="comm-from"><span class="tag tag-deal">OKTA</span> Okta Access Requests</div>
-        <div class="comm-subj">Request #3 expiring in 30 days</div>
-        <div class="comm-snip">Okta access request notification — review if needed</div>
-      </div>
-      <div class="comm">
-        <div class="comm-from"><span class="tag tag-spam">SPAM ×8+</span> Various gmail addresses</div>
-        <div class="comm-subj">Re: [various] — wbx pattern replies</div>
-        <div class="comm-snip">Automated spam replies — safe to bulk archive</div>
+      <div class="card-body">
+        <div class="ticker-row">
+          <div><div class="ticker-name">S&amp;P 500</div><div class="ticker-sub">SPX</div></div>
+          <div class="ticker-price"><div class="ticker-value">6,672.62</div><div class="ticker-change dn">▼ 1.52%</div></div>
+        </div>
+        <div class="ticker-row">
+          <div><div class="ticker-name">Dow Jones</div><div class="ticker-sub">DJIA</div></div>
+          <div class="ticker-price"><div class="ticker-value">46,677.85</div><div class="ticker-change dn">▼ 739 pts / 1.56%</div></div>
+        </div>
+        <div class="ticker-row">
+          <div><div class="ticker-name">Nasdaq</div><div class="ticker-sub">COMP</div></div>
+          <div class="ticker-price"><div class="ticker-value">22,311.98</div><div class="ticker-change dn">▼ 1.78%</div></div>
+        </div>
+        <div class="ticker-row">
+          <div><div class="ticker-name">WTI Crude</div><div class="ticker-sub">Oil</div></div>
+          <div class="ticker-price"><div class="ticker-value warn">$95.73</div><div class="ticker-change warn">▲ +9.72%</div></div>
+        </div>
+        <div class="ticker-row">
+          <div><div class="ticker-name">Bitcoin</div><div class="ticker-sub">BTC/USD</div></div>
+          <div class="ticker-price"><div class="ticker-value">$70,242</div><div class="ticker-change dn">▼ Below $70K</div></div>
+        </div>
       </div>
     </div>
 
-    <!-- ACTION ITEMS -->
-    <div class="panel">
-      <div class="panel-hdr"><span class="ico">☐</span> ACTION ITEMS</div>
-      <div class="action">
-        <div class="action-chk">▸</div>
-        <div class="action-txt"><span class="action-deal" style="color:var(--red)">QUAD/TARGET</span><br>Check platform limitations for trial</div>
+    <!-- Top Stories col-span-2 -->
+    <div class="card col-span-2">
+      <div class="card-header">
+        <span class="card-title">📰 Top Stories Today</span>
+        <span style="font-size:11px;color:var(--muted)">Click to expand</span>
       </div>
-      <div class="action">
-        <div class="action-chk">▸</div>
-        <div class="action-txt"><span class="action-deal" style="color:var(--red)">QUAD/TARGET</span><br>Share pilot agreement (Josh returns Mar 23)</div>
+
+      <!-- Story 1 -->
+      <div class="news-item" onclick="toggleNews(this)">
+        <button class="news-toggle">
+          <div class="news-toggle-left">
+            <div class="news-category cat-geopolitical">🌍 Geopolitical · Breaking</div>
+            <div class="news-headline">U.S.-Israeli War on Iran — 1,348 Civilian Deaths Claimed; Strait of Hormuz Under Threat</div>
+          </div>
+          <span class="news-toggle-arrow">›</span>
+        </button>
+        <div class="news-body">
+          Iran reports 1,348 civilian casualties from U.S.-Israeli strikes. The Pentagon admitted striking an Iranian girls' school; President Trump blamed Iran. Retired Maj. Gen. Randy Manner publicly questioned the war rationale. Iran's supreme leader Mojtaba Khamenei has declared the Strait of Hormuz must remain closed, threatening global oil supply. Iran has warned oil could top $200/bbl. The IEA released strategic reserves in response but analysts doubt the reserve is large enough to offset disruptions. Trump told Fox News' Trey Yingst that talks with Iran are "possible."
+        </div>
       </div>
-      <div class="action">
-        <div class="action-chk">▸</div>
-        <div class="action-txt"><span class="action-deal" style="color:var(--orange)">PIPELINE</span><br>Unir $590k — CEO decision this week</div>
+
+      <!-- Story 2 -->
+      <div class="news-item" onclick="toggleNews(this)">
+        <button class="news-toggle">
+          <div class="news-toggle-left">
+            <div class="news-category cat-energy">⚡ Energy · Market Mover</div>
+            <div class="news-headline">Brent Crude Surges Past $100/bbl After Tanker Attacks in Iraqi Waters</div>
+          </div>
+          <span class="news-toggle-arrow">›</span>
+        </button>
+        <div class="news-body">
+          Attacks on two oil tankers in Iraqi waters triggered a fresh surge in energy prices. Brent crude rose 10.5% on Thursday. WTI settled at $95.73/bbl (+9.72%). Financial stocks were among the worst hit — Goldman Sachs fell 4.47%, Boeing 4.29%. The Dow fell below 47,000 for the first time in 2026. The Federal Reserve is expected to hold rates next week.
+        </div>
       </div>
-      <div class="action">
-        <div class="action-chk">▸</div>
-        <div class="action-txt"><span class="action-deal" style="color:var(--orange)">PIPELINE</span><br>Writer $425k — Trinity/Doug Friday discussion</div>
+
+      <!-- Story 3 -->
+      <div class="news-item" onclick="toggleNews(this)">
+        <button class="news-toggle">
+          <div class="news-toggle-left">
+            <div class="news-category cat-policy">🏛 Policy · Domestic</div>
+            <div class="news-headline">GOP Sen. Cornyn Flips on Filibuster to Pass SAVE America Act; NH Dem Wins Special Election</div>
+          </div>
+          <span class="news-toggle-arrow">›</span>
+        </button>
+        <div class="news-body">
+          Republican Senator John Cornyn reversed his long-held position on the filibuster to help pass the SAVE America Act. Meanwhile, a Democratic victory in a New Hampshire special election is being cited as a warning sign for Republicans heading into the midterms. Analysts are watching the political landscape as the Iran war and economic pressures reshape voter sentiment.
+        </div>
       </div>
-      <div class="action">
-        <div class="action-chk">▸</div>
-        <div class="action-txt"><span class="action-deal" style="color:var(--yellow)">WEDDING</span><br>Book florist · Get transport quotes · Suit fitting Friday</div>
+
+      <!-- Story 4 -->
+      <div class="news-item" onclick="toggleNews(this)">
+        <button class="news-toggle">
+          <div class="news-toggle-left">
+            <div class="news-category cat-geopolitical">🇬🇧 UK · Diplomacy</div>
+            <div class="news-headline">UK Envoy Lord Mandelson Faces Scrutiny Over Epstein Ties; Cabinet Due Diligence Released</div>
+          </div>
+          <span class="news-toggle-arrow">›</span>
+        </button>
+        <div class="news-body">
+          Leaked reports show UK PM Keir Starmer was warned by top aides about Lord Mandelson's close relationship with Jeffrey Epstein before appointing him as Britain's ambassador to the U.S. The first tranche of the "Mandelson Files" was publicly released, including an official Cabinet Office due diligence report. The controversy is causing diplomatic embarrassment at a critical moment for UK-US relations.
+        </div>
       </div>
-      <div class="action">
-        <div class="action-chk">▸</div>
-        <div class="action-txt"><span class="action-deal" style="color:var(--accent)">WALMART</span><br>Monitor: Juan → Brooke on demo direction</div>
+
+      <!-- Story 5 -->
+      <div class="news-item" onclick="toggleNews(this)">
+        <button class="news-toggle">
+          <div class="news-toggle-left">
+            <div class="news-category cat-tech">🤖 Tech · Apple</div>
+            <div class="news-headline">Apple Turns 50 — Foldable iPhone Rumors Circulate; New Details Emerge</div>
+          </div>
+          <span class="news-toggle-arrow">›</span>
+        </button>
+        <div class="news-body">
+          Apple is celebrating its 50th anniversary today. Tech media is abuzz with new foldable iPhone rumors and fresh details about Apple's next product roadmap. The company remains one of the most watched in tech despite geopolitical-driven market volatility. Analysts note that Apple's supply chain exposure to the broader Middle East situation could create headwinds.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- TAB: MARKETS                                        -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="tab-markets" class="tab-content">
+  <div class="grid-2">
+
+    <!-- Equities -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">📉 U.S. Equities</span>
+        <span class="pill pill-red">2026 Closing Lows</span>
+      </div>
+      <div class="card-body">
+        <div class="ticker-row">
+          <div><div class="ticker-name">Dow Jones</div><div class="ticker-sub">DJIA</div></div>
+          <div class="ticker-price"><div class="ticker-value">46,677.85</div><div class="ticker-change dn">▼ 739.42 pts · -1.56%</div></div>
+        </div>
+        <div class="ticker-row">
+          <div><div class="ticker-name">S&amp;P 500</div><div class="ticker-sub">SPX</div></div>
+          <div class="ticker-price"><div class="ticker-value">6,672.62</div><div class="ticker-change dn">▼ -1.52% · Lowest since Nov</div></div>
+        </div>
+        <div class="ticker-row">
+          <div><div class="ticker-name">Nasdaq Composite</div><div class="ticker-sub">COMP</div></div>
+          <div class="ticker-price"><div class="ticker-value">22,311.98</div><div class="ticker-change dn">▼ -1.78%</div></div>
+        </div>
+        <div class="ticker-row">
+          <div><div class="ticker-name">Russell 2000</div><div class="ticker-sub">RUT</div></div>
+          <div class="ticker-price"><div class="ticker-value">—</div><div class="ticker-change dn">▼ -2.11%</div></div>
+        </div>
+        <div class="callout">
+          <strong>Notable movers:</strong> Goldman Sachs -4.47%, Boeing -4.29%, 3M -3.91%, Morgan Stanley -4.1% (capped withdrawals from private credit funds). The Dow broke below 47,000 for the first time this year.
+        </div>
+      </div>
+    </div>
+
+    <!-- Energy & Commodities -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">⚡ Energy & Commodities</span>
+        <span class="pill pill-orange">Critical Watch</span>
+      </div>
+      <div class="card-body">
+        <div class="ticker-row">
+          <div><div class="ticker-name">WTI Crude</div><div class="ticker-sub">USD/bbl</div></div>
+          <div class="ticker-price"><div class="ticker-value warn">$95.73</div><div class="ticker-change warn">▲ +9.72%</div></div>
+        </div>
+        <div class="ticker-row">
+          <div><div class="ticker-name">Brent Crude</div><div class="ticker-sub">ICE / International</div></div>
+          <div class="ticker-price"><div class="ticker-value warn">&gt;$100.00</div><div class="ticker-change warn">▲ +10.5%</div></div>
+        </div>
+        <div class="callout">
+          <strong>Iran Risk Scenario:</strong> If the Strait of Hormuz remains closed, Iran has warned oil could reach <strong>$200/bbl</strong>. The IEA released strategic reserves but analysts doubt it will be sufficient. Energy sector is the most geopolitically exposed sector right now.
+        </div>
+      </div>
+    </div>
+
+    <!-- Crypto -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">₿ Cryptocurrency</span>
+        <span class="pill pill-blue">Volatile</span>
+      </div>
+      <div class="card-body">
+        <div class="ticker-row">
+          <div><div class="ticker-name">Bitcoin</div><div class="ticker-sub">BTC/USD</div></div>
+          <div class="ticker-price"><div class="ticker-value">$70,242</div><div class="ticker-change dn">▼ Slipped below $70K on tanker news</div></div>
+        </div>
+        <div class="ticker-row">
+          <div><div class="ticker-name">Ethereum</div><div class="ticker-sub">ETH/USD</div></div>
+          <div class="ticker-price"><div class="ticker-value">$2,025</div><div class="ticker-change dn">▼ -0.5% day / -4.5% week</div></div>
+        </div>
+        <div class="ticker-row">
+          <div><div class="ticker-name">Solana</div><div class="ticker-sub">SOL/USD</div></div>
+          <div class="ticker-price"><div class="ticker-value">$85.00</div><div class="ticker-change dn">▼ -1.5% · Worst major this week</div></div>
+        </div>
+        <div class="ticker-row">
+          <div><div class="ticker-name">XRP</div><div class="ticker-sub">XRP/USD</div></div>
+          <div class="ticker-price"><div class="ticker-value">$1.37</div><div class="ticker-change dn">▼ -0.8%</div></div>
+        </div>
+        <div class="ticker-row">
+          <div><div class="ticker-name">Dogecoin</div><div class="ticker-sub">DOGE/USD</div></div>
+          <div class="ticker-price"><div class="ticker-value">$0.092</div><div class="ticker-change dn">▼ -0.8% · Gave back Musk gains</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fed / Macro -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">🏦 Fed & Macro Context</span>
+      </div>
+      <div class="card-body">
+        <div class="stat-row">
+          <span class="stat-label">Fed Next Meeting</span>
+          <span class="stat-value">Expected: Hold Rates</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Fed Rationale</span>
+          <span class="stat-value">Awaiting war clarity</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Key Risk</span>
+          <span class="stat-value warn">Stagflation if oil sustains $100+</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">IEA Response</span>
+          <span class="stat-value">Record strategic reserve release</span>
+        </div>
+        <div class="callout">
+          Markets are pricing in a "wait and see" Fed as geopolitical uncertainty clouds both inflation and growth outlooks. Oil staying above $100 for an extended period raises stagflation risk.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- TAB: TECH & AI                                      -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="tab-tech" class="tab-content">
+  <div class="section-label">Today's Tech & AI Highlights</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">🤖 AI & Infrastructure</span>
+    </div>
+
+    <div class="news-item" onclick="toggleNews(this)">
+      <button class="news-toggle">
+        <div class="news-toggle-left">
+          <div class="news-category cat-tech">💚 Nvidia · Infrastructure</div>
+          <div class="news-headline">Nvidia Invests $2B in Nebius, Taking 8.3% Stake in European AI Cloud Provider</div>
+        </div>
+        <span class="news-toggle-arrow">›</span>
+      </button>
+      <div class="news-body">
+        Nvidia has made a strategic $2 billion investment in Amsterdam-based Nebius, acquiring an 8.3% stake. This deepens Nvidia's push into the "neocloud" layer of the AI stack — the segment of cloud infrastructure built specifically for GPU-accelerated AI workloads. The investment signals continued confidence in AI infrastructure spending despite equity market turbulence driven by geopolitical tensions.
+      </div>
+    </div>
+
+    <div class="news-item" onclick="toggleNews(this)">
+      <button class="news-toggle">
+        <div class="news-toggle-left">
+          <div class="news-category cat-tech">🔵 Meta · Chips</div>
+          <div class="news-headline">Meta Unveils 4 Custom Chips Including MTIA 300 for AI Training and Recommendations</div>
+        </div>
+        <span class="news-toggle-arrow">›</span>
+      </button>
+      <div class="news-body">
+        Meta revealed four new custom-built silicon chips designed to support ranking and recommendation systems across Facebook and Instagram, as well as generative AI inference. The flagship MTIA 300 is engineered for training heavy ranking/recommendation models. The move is part of Meta's broader strategy to reduce dependence on Nvidia and control its AI infrastructure costs.
+      </div>
+    </div>
+
+    <div class="news-item" onclick="toggleNews(this)">
+      <button class="news-toggle">
+        <div class="news-toggle-left">
+          <div class="news-category cat-tech">🔍 Perplexity · Agents</div>
+          <div class="news-headline">Perplexity Launches "Personal Computer" — Persistent AI Agent for Mac mini at $200/mo</div>
+        </div>
+        <span class="news-toggle-arrow">›</span>
+      </button>
+      <div class="news-body">
+        At its inaugural Ask 2026 developer conference, Perplexity unveiled "Personal Computer" — software that runs continuously on a Mac mini and gives Perplexity's cloud AI agent persistent access to local files, apps, and sessions. The product is exclusive to Max subscribers ($200/month). This marks an aggressive move into the persistent AI agent space, competing with similar products from other AI companies. Perplexity also announced expanded enterprise tools at the event.
+      </div>
+    </div>
+
+    <div class="news-item" onclick="toggleNews(this)">
+      <button class="news-toggle">
+        <div class="news-toggle-left">
+          <div class="news-category cat-tech">🤖 Robotics · Funding</div>
+          <div class="news-headline">Mind Robotics Raises $500M Series A at $2B Valuation — Spun Out of Rivian by CEO RJ Scaringe</div>
+        </div>
+        <span class="news-toggle-arrow">›</span>
+      </button>
+      <div class="news-body">
+        Mind Robotics, an AI-powered robotics startup spun out of Rivian and tied to CEO RJ Scaringe, raised $500 million in a Series A round, valuing the company at $2 billion. The funding represents one of the largest early-stage robotics deals of the year and reflects surging investor appetite for physical AI systems. Scaringe's connection to the EV world lends credence to the company's focus on autonomous physical systems.
+      </div>
+    </div>
+
+    <div class="news-item" onclick="toggleNews(this)">
+      <button class="news-toggle">
+        <div class="news-toggle-left">
+          <div class="news-category cat-tech">🍎 Apple · Anniversary</div>
+          <div class="news-headline">Apple Celebrates 50th Anniversary — Foldable iPhone Details Emerge</div>
+        </div>
+        <span class="news-toggle-arrow">›</span>
+      </button>
+      <div class="news-body">
+        Apple is marking its 50th anniversary today (founded April 1, 1976). New foldable iPhone rumors are circulating across tech media with increased specificity. Apple faces some supply chain exposure to the Middle East situation given component manufacturing dependencies. Despite market turbulence, Apple remains one of the world's most valuable companies.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout" style="margin-top:16px">
+    <strong>Broader Trend:</strong> AI infrastructure investment continues at full pace even as equity markets decline. Nvidia, Meta, Perplexity, and robotics startups are all signaling that the AI buildout is accelerating — largely insulated from the geopolitical-driven market volatility affecting traditional sectors.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- TAB: GEOPOLITICAL                                   -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="tab-geo" class="tab-content">
+  <div class="section-label">Active Conflict & Geopolitical Developments</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">🌍 U.S.-Iran War — Operation Epic Fury</span>
+      <span class="pill pill-red">Active Combat</span>
+    </div>
+
+    <div class="news-item" onclick="toggleNews(this)">
+      <button class="news-toggle">
+        <div class="news-toggle-left">
+          <div class="news-category cat-geopolitical">Casualties & Accountability</div>
+          <div class="news-headline">Iran Claims 1,348 Civilians Killed; Pentagon Admits School Strike Under Investigation</div>
+        </div>
+        <span class="news-toggle-arrow">›</span>
+      </button>
+      <div class="news-body">
+        Iran's government says 1,348 civilians have been killed in U.S. and Israeli strikes. Defense Secretary Pete Hegseth confirmed the Pentagon is investigating a strike on an Iranian girls' school that multiple analyses attributed to the U.S. military. President Trump publicly blamed Iran for the strike. Senators on both sides are demanding greater accountability from the administration.
+      </div>
+    </div>
+
+    <div class="news-item" onclick="toggleNews(this)">
+      <button class="news-toggle">
+        <div class="news-toggle-left">
+          <div class="news-category cat-geopolitical">Strait of Hormuz</div>
+          <div class="news-headline">Iran Declares Strait of Hormuz Closed; Oil Could Hit $200/bbl, Khamenei Warns</div>
+        </div>
+        <span class="news-toggle-arrow">›</span>
+      </button>
+      <div class="news-body">
+        Supreme Leader Mojtaba Khamenei declared that the Strait of Hormuz must remain closed to pressure international rivals. The Strait is the world's most critical oil chokepoint, handling roughly 20% of global oil trade. Brent crude crossed $100/bbl and analysts warn that a sustained closure could drive prices to $200/bbl. The IEA responded with a record strategic reserve release, but markets are skeptical it will be enough.
+      </div>
+    </div>
+
+    <div class="news-item" onclick="toggleNews(this)">
+      <button class="news-toggle">
+        <div class="news-toggle-left">
+          <div class="news-category cat-geopolitical">Military & Intelligence</div>
+          <div class="news-headline">Intelligence Memo Warns Iran May Target California from Offshore UAV Vessel</div>
+        </div>
+        <span class="news-toggle-arrow">›</span>
+      </button>
+      <div class="news-body">
+        A classified memo distributed to agencies participating in a federal Joint Terrorism Task Force warned that U.S. intelligence acquired information suggesting "Iran allegedly aspired to conduct a surprise attack using unmanned aerial vehicles from an unidentified vessel off the coast of the United States Homeland, specifically against unspecified targets in California." The threat level and specificity of the intelligence remain unclear.
+      </div>
+    </div>
+
+    <div class="news-item" onclick="toggleNews(this)">
+      <button class="news-toggle">
+        <div class="news-toggle-left">
+          <div class="news-category cat-geopolitical">Diplomacy</div>
+          <div class="news-headline">Trump Signals Talks with Iran "Possible"; Reacts to New Supreme Leader Appointment</div>
+        </div>
+        <span class="news-toggle-arrow">›</span>
+      </button>
+      <div class="news-body">
+        In an exclusive interview with Fox News' Trey Yingst, President Trump commented on Iran's new supreme leader, discussed the timeline of Operation Epic Fury, and indicated that diplomatic talks with Iran are "possible." The comments represent a potential opening for de-escalation, though analysts caution that the Strait closure and ongoing strikes complicate any near-term negotiations.
+      </div>
+    </div>
+
+    <div class="news-item" onclick="toggleNews(this)">
+      <button class="news-toggle">
+        <div class="news-toggle-left">
+          <div class="news-category cat-geopolitical">Lebanon & Gaza</div>
+          <div class="news-headline">Lebanon Death Toll Exceeds 630; Israel Strikes Gaza Marketplace and Tent Camp</div>
+        </div>
+        <span class="news-toggle-arrow">›</span>
+      </button>
+      <div class="news-body">
+        Lebanon's death toll has surpassed 630 as Israeli bombing campaigns continue alongside the broader Iran conflict. Israeli forces also struck a Gaza marketplace and tent camp in continuing operations. The multi-front nature of the conflict is drawing increased international condemnation and adding pressure on Gulf State partners.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top:20px">International Developments</div>
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">🇬🇧 United Kingdom</span>
+    </div>
+    <div class="news-item" onclick="toggleNews(this)">
+      <button class="news-toggle">
+        <div class="news-toggle-left">
+          <div class="news-category cat-geopolitical">UK Diplomacy</div>
+          <div class="news-headline">Lord Mandelson's Epstein Ties Cause Diplomatic Row; PM Starmer Ignored Aides' Warnings</div>
+        </div>
+        <span class="news-toggle-arrow">›</span>
+      </button>
+      <div class="news-body">
+        Reports confirm UK Prime Minister Sir Keir Starmer received warnings from senior aides about Lord Mandelson's relationship with Jeffrey Epstein before appointing him as Britain's ambassador to the United States. The first tranche of "Mandelson Files" has been released publicly, including an official Cabinet Office due diligence report. The controversy arrives at a sensitive moment for the UK-US relationship, already strained by tensions over the Iran war.
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===== MARKETS TAB ===== -->
-<div class="tab-content" id="tab-markets">
-  <div class="g2">
-    <div class="panel">
-      <div class="panel-hdr"><span class="ico">📊</span> INDICES &amp; COMMODITIES</div>
-      <div class="mkt-row"><div class="mkt-name">S&P 500</div><div><span class="mkt-val" style="color:var(--red)">5,572</span><span class="mkt-chg down">▼ -0.76%</span></div></div>
-      <div class="mkt-row"><div class="mkt-name">Dow Jones</div><div><span class="mkt-val" style="color:var(--red)">41,350</span><span class="mkt-chg down">▼ -1.14%</span></div></div>
-      <div class="mkt-row"><div class="mkt-name">NASDAQ Comp</div><div><span class="mkt-val" style="color:var(--red)">17,516</span><span class="mkt-chg down">▼ -0.18%</span></div></div>
-      <div class="mkt-row"><div class="mkt-name">Brent Crude</div><div><span class="mkt-val" style="color:var(--orange)">$100.20</span><span class="mkt-chg up">▲ +5.8%</span></div></div>
-      <div class="mkt-row"><div class="mkt-name">WTI Crude</div><div><span class="mkt-val" style="color:var(--orange)">$96.40</span><span class="mkt-chg up">▲ +5.2%</span></div></div>
-      <div class="mkt-row"><div class="mkt-name">Gold</div><div><span class="mkt-val" style="color:var(--green)">$3,020</span><span class="mkt-chg up">▲ +1.8%</span></div></div>
-    </div>
-    <div class="panel">
-      <div class="panel-hdr"><span class="ico">₿</span> CRYPTO &amp; MACRO</div>
-      <div class="mkt-row"><div class="mkt-name">Bitcoin</div><div><span class="mkt-val" style="color:var(--green)">$74,000</span><span class="mkt-chg up">▲ +2.1%</span></div></div>
-      <div class="mkt-row"><div class="mkt-name">US CPI YoY</div><div><span class="mkt-val" style="color:var(--text)">2.4%</span><span class="mkt-chg flat">— steady</span></div></div>
-      <div class="mkt-row"><div class="mkt-name">Core CPI MoM</div><div><span class="mkt-val" style="color:var(--green)">0.2%</span><span class="mkt-chg flat">— cooled</span></div></div>
-      <div class="mkt-row"><div class="mkt-name">German CPI</div><div><span class="mkt-val" style="color:var(--green)">1.9%</span><span class="mkt-chg flat">— disinflation</span></div></div>
-      <div class="mkt-note">
-        <strong style="color:var(--text-bright)">Key drivers:</strong> Iran war Day 12 — Brent briefly topped $100 despite historic 400M bbl IEA reserve release. CPI came in steady at 2.4%, core cooled to 0.2% MoM — good news on inflation. BTC outperforming risk assets, holding above $70K. Stagflation risk elevated if oil persists above $90.
-      </div>
-    </div>
-  </div>
-  <div class="panel">
-    <div class="panel-hdr"><span class="ico">📰</span> MARKET NEWS</div>
-    <div class="news-item">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-mkt">OIL</span> IEA announces historic 400M barrel reserve release — prices still above $100</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">The International Energy Agency's 32 members unanimously agreed to release reserves. The US contributes 172M barrels from the Strategic Petroleum Reserve starting next week. Despite the coordinated action, Brent crude remains above $100/bbl as Iran war disrupts 7.5% of global supply.</div></div>
-    </div>
-    <div class="news-item">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-mkt">EQUITIES</span> Dow rallies 400 pts off lows as Trump says war could end soon</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">Markets staged a comeback after Trump signaled the conflict may resolve shortly. Oil prices fell temporarily, lifting sentiment. BTC climbed to $74K. Oracle continued post-earnings momentum.</div></div>
-    </div>
-    <div class="news-item">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-mkt">MACRO</span> US February CPI holds at 2.4% — core inflation cools to 0.2% MoM</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">Inflation data came in line with expectations. Core CPI cooled, giving the Fed room for patience. German CPI confirmed disinflation at 1.9%. The risk remains oil-driven supply-side inflation if the Iran conflict escalates further.</div></div>
-    </div>
-  </div>
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- FOOTER                                              -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div style="border-top:1px solid var(--border); padding:14px 24px; text-align:center; color:var(--muted); font-size:11px; margin-top:20px;">
+  SITREP · Generated Thursday, March 12, 2026 · For personal use only · Sources: CNBC, The Street, 247WallSt, FOX 9, Democracy Now, TechStartups, CoinDesk, Bloomberg, Fortune
 </div>
-
-<!-- ===== TECH & AI TAB ===== -->
-<div class="tab-content" id="tab-tech">
-  <div class="panel">
-    <div class="panel-hdr"><span class="ico">🤖</span> AI &amp; TECHNOLOGY</div>
-    <div class="news-item">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-ai">AI</span> OpenAI launches GPT-5.4: 1M token context window, 33% fewer factual errors</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">GPT-5.4 features a massive 1-million-token context window with API pricing starting at $2.50 per million input tokens. Along with Anthropic's Claude 4.6 series, these models solidify the "Agentic Pivot" — models executing complex multi-step workflows within professional software environments.</div></div>
-    </div>
-    <div class="news-item">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-ai">AI</span> Thinking Machines + Nvidia: gigawatt-scale compute deal with Vera Rubin chips</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">Mira Murati's Thinking Machines struck a multiyear deal with Nvidia for access to 1+ GW of next-gen Vera Rubin chips. The deal gives the startup an enormous compute runway and includes a significant new investment from Nvidia.</div></div>
-    </div>
-    <div class="news-item">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-ai">POLICY</span> Anthropic expands Washington presence — Pentagon disagreement over military AI use</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">Anthropic is treating AI policy as a core strategic battleground, expanding lobbying amid debates over regulation, military use, and labor impact. Meanwhile, a disagreement between the Pentagon and Anthropic has emerged over the Trump administration's use of its AI technology.</div></div>
-    </div>
-    <div class="news-item">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-prod">PRODUCT</span> Apple iPhone 17e launches at $599 — A19 chip, Apple C1X modem</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">iPhone 17e available today in black, white, and pink. Features A19 chip, 48MP camera, 256GB base storage, and Apple's C1X cellular modem (2x faster than C1 in iPhone 16e). Starting at $599.</div></div>
-    </div>
-    <div class="news-item">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-ai">OPEN SOURCE</span> March 2026 AI avalanche: 12+ models in one week</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">Open-source models like LTX 2.3, Helios, Kiwi-Edit, and CUDA Agent now rival or exceed proprietary alternatives in video generation, language, and 3D domains. Enterprise AI agent deployments are graduating from experiments to production across code, legal, finance, and admin tasks. 86% of enterprises increasing AI budgets in 2026.</div></div>
-    </div>
-    <div class="news-item">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-prod">AUTONOMOUS</span> Zoox + Uber robotaxi partnership expands to LA; Nvidia + Alpamayo AV digital twins</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">Amazon's Zoox partners with Uber to bring robotaxi service to Las Vegas riders, expanding to LA next. Nvidia announced a strategic partnership with Alpamayo to streamline AV development using digital twin technology for simulating millions of virtual miles.</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== GEOPOLITICAL TAB ===== -->
-<div class="tab-content" id="tab-geo">
-  <div class="panel">
-    <div class="panel-hdr"><span class="ico">🌍</span> GEOPOLITICAL INTELLIGENCE</div>
-    <div class="news-item open">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-geo">WAR DAY 12</span> Iraq shuts oil ports; Gulf states intercept Iranian missiles and drones</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">Iraq shut down oil port operations after deadly attacks on two foreign oil tankers. Kuwait shot down eight drones, the UAE is responding to Iranian missiles, and Qatar intercepted a missile attack. Multiple explosions reported across Tehran as US-Israeli strikes continue. Bahrain, Kuwait, UAE and Saudi Arabia all actively intercepting Iranian weapons.</div></div>
-    </div>
-    <div class="news-item">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-geo">ENERGY</span> IEA: Iran war causing biggest-ever oil market disruption — 7.5% of global supply hit</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">The International Energy Agency declared this the largest oil market disruption in history, impacting 7.5% of global supply. Despite the historic 400M barrel coordinated release, Brent crude remains above $100/bbl. Iranian attacks on shipping in the Gulf are worsening supply concerns.</div></div>
-    </div>
-    <div class="news-item">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-geo">HUMANITARIAN</span> 3.2M displaced in Iran; 750K+ in Lebanon in 12 days of conflict</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">UNHCR reports up to 3.2 million people displaced in Iran. In Lebanon, more than 750,000 people displaced in 12 days since the US-Israel launched operations. Israel has bombed Beirut. A humanitarian crisis is deepening across the region.</div></div>
-    </div>
-    <div class="news-item">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-geo">SECURITY</span> Iran reportedly planning drone attack from vessel off US coast targeting California</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">A memo sent to federal Joint Terrorism Task Force agencies indicates Iran allegedly aspired to conduct a surprise attack using unmanned aerial vehicles from an unidentified vessel off the coast of the US, specifically against unspecified targets in California.</div></div>
-    </div>
-    <div class="news-item">
-      <div class="news-hdr" onclick="toggle(this)">
-        <div class="news-title"><span class="tag tag-geo">DIPLOMACY</span> Tehran sets 3 conditions for peace; Trump says war could be over soon</div>
-        <div class="news-arrow">▼</div>
-      </div>
-      <div class="news-body"><div class="news-body-inner">Tehran has announced three conditions for peace negotiations. Meanwhile, Trump signaled the conflict may resolve shortly, which briefly calmed oil markets and lifted equities. The diplomatic situation remains highly fluid.</div></div>
-    </div>
-  </div>
-</div>
-
-</div><!-- /main -->
 
 <script>
-// Clock
-function updateClock(){
-  const n=new Date();
-  const d=n.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-  const t=n.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  document.getElementById('clock').innerHTML=d+' &nbsp;|&nbsp; '+t;
-}
-updateClock();setInterval(updateClock,1000);
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
 
-// Tabs
-function switchTab(id){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  event.target.classList.add('active');
-}
-
-// Expandable news
-function toggle(el){
-  el.parentElement.classList.toggle('open');
-}
+  function toggleNews(item) {
+    item.classList.toggle('open');
+  }
 </script>
+
 </body>
 </html>
