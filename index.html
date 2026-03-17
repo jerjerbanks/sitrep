@@ -101,357 +101,467 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;opa
 </style>
 </head>
 <body>
+
 <div class="topbar">
   <div style="display:flex;align-items:center">
     <span class="brand">SITREP</span>
     <span class="brand-sub">DAILY INTELLIGENCE BRIEF</span>
   </div>
   <div class="clock">
-    <b>TUE 17 MAR 2026</b> &nbsp;|&nbsp; 0700 LOCAL &nbsp;|&nbsp; MINNEAPOLIS
+    <b>TUE 17 MAR 2026</b> &nbsp;|&nbsp; 1600 LOCAL &nbsp;|&nbsp; MINNEAPOLIS
   </div>
 </div>
+
 <div class="ticker-wrap">
   <div class="ticker">
-    <div class="ticker-item"><span class="lbl">S&amp;P 500</span> 6,672 <span class="down">&#9660; 0.41%</span></div>
-    <div class="ticker-item"><span class="lbl">DOW</span> 46,946 <span class="up">&#9650; 0.83%</span></div>
-    <div class="ticker-item"><span class="lbl">NASDAQ</span> NQ-F <span class="down">&#9660; 0.20%</span></div>
-    <div class="ticker-item"><span class="lbl">PLTR</span> $152.25 <span class="up">&#9650; 1.02%</span></div>
-    <div class="ticker-item"><span class="lbl">UNH</span> $283.56 <span class="down">&#9660; 2.92%</span></div>
-    <div class="ticker-item"><span class="lbl">DFTX</span> $18.30 <span class="up">&#9650; 1.33%</span></div>
-    <div class="ticker-item"><span class="lbl">TSLA</span> $395.56 <span class="up">&#9650; 1.12%</span></div>
-    <div class="ticker-item"><span class="lbl">BTC</span> $74,298 <span class="up">&#9650; 0.52%</span></div>
-    <div class="ticker-item"><span class="lbl">BRENT</span> $103.65 <span class="up">&#9650; 4.00%</span></div>
-    <div class="ticker-item"><span class="lbl">GOLD</span> $5,050 <span class="up">&#9650; 0.98%</span></div>
-    <div class="ticker-item"><span class="lbl">10Y</span> 4.23% <span class="flat">&#8212;</span></div>
-    <div class="ticker-item"><span class="lbl">S&amp;P 500</span> 6,672 <span class="down">&#9660; 0.41%</span></div>
-    <div class="ticker-item"><span class="lbl">DOW</span> 46,946 <span class="up">&#9650; 0.83%</span></div>
-    <div class="ticker-item"><span class="lbl">NASDAQ</span> NQ-F <span class="down">&#9660; 0.20%</span></div>
-    <div class="ticker-item"><span class="lbl">PLTR</span> $152.25 <span class="up">&#9650; 1.02%</span></div>
-    <div class="ticker-item"><span class="lbl">UNH</span> $283.56 <span class="down">&#9660; 2.92%</span></div>
-    <div class="ticker-item"><span class="lbl">DFTX</span> $18.30 <span class="up">&#9650; 1.33%</span></div>
-    <div class="ticker-item"><span class="lbl">TSLA</span> $395.56 <span class="up">&#9650; 1.12%</span></div>
-    <div class="ticker-item"><span class="lbl">BTC</span> $74,298 <span class="up">&#9650; 0.52%</span></div>
-    <div class="ticker-item"><span class="lbl">BRENT</span> $103.65 <span class="up">&#9650; 4.00%</span></div>
-    <div class="ticker-item"><span class="lbl">GOLD</span> $5,050 <span class="up">&#9650; 0.98%</span></div>
-    <div class="ticker-item"><span class="lbl">10Y</span> 4.23% <span class="flat">&#8212;</span></div>
+    <div class="ticker-item"><span class="lbl">S&amp;P 500</span> 6,716.09 <span class="up">▲ +0.25%</span></div>
+    <div class="ticker-item"><span class="lbl">DOW</span> 46,993.26 <span class="up">▲ +0.10%</span></div>
+    <div class="ticker-item"><span class="lbl">NASDAQ</span> 22,479.53 <span class="up">▲ +0.47%</span></div>
+    <div class="ticker-item"><span class="lbl">PLTR</span> $155.66 <span class="up">▲ +1.93%</span></div>
+    <div class="ticker-item"><span class="lbl">UNH</span> $284.24 <span class="down">▼ -1.20%</span></div>
+    <div class="ticker-item"><span class="lbl">DFTX</span> $18.37 <span class="up">▲ +0.38%</span></div>
+    <div class="ticker-item"><span class="lbl">TSLA</span> $395.56 <span class="up">▲ +1.12%</span></div>
+    <div class="ticker-item"><span class="lbl">BTC</span> $73,670 <span class="up">▲ +3.02%</span></div>
+    <div class="ticker-item"><span class="lbl">BRENT</span> $103.42 <span class="up">▲ +3.20%</span></div>
+    <div class="ticker-item"><span class="lbl">GOLD</span> $5,003 <span class="down">▼ -1.15%</span></div>
+    <div class="ticker-item"><span class="lbl">10Y</span> 4.20% <span class="down">▼ -2bps</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span class="lbl">S&amp;P 500</span> 6,716.09 <span class="up">▲ +0.25%</span></div>
+    <div class="ticker-item"><span class="lbl">DOW</span> 46,993.26 <span class="up">▲ +0.10%</span></div>
+    <div class="ticker-item"><span class="lbl">NASDAQ</span> 22,479.53 <span class="up">▲ +0.47%</span></div>
+    <div class="ticker-item"><span class="lbl">PLTR</span> $155.66 <span class="up">▲ +1.93%</span></div>
+    <div class="ticker-item"><span class="lbl">UNH</span> $284.24 <span class="down">▼ -1.20%</span></div>
+    <div class="ticker-item"><span class="lbl">DFTX</span> $18.37 <span class="up">▲ +0.38%</span></div>
+    <div class="ticker-item"><span class="lbl">TSLA</span> $395.56 <span class="up">▲ +1.12%</span></div>
+    <div class="ticker-item"><span class="lbl">BTC</span> $73,670 <span class="up">▲ +3.02%</span></div>
+    <div class="ticker-item"><span class="lbl">BRENT</span> $103.42 <span class="up">▲ +3.20%</span></div>
+    <div class="ticker-item"><span class="lbl">GOLD</span> $5,003 <span class="down">▼ -1.15%</span></div>
+    <div class="ticker-item"><span class="lbl">10Y</span> 4.20% <span class="down">▼ -2bps</span></div>
   </div>
 </div>
+
 <div class="main">
+
   <div class="priority">
-    <div class="pri-label"><span class="dot"></span> FLASH -- TOP SIGNAL</div>
-    <div class="pri-text">KOHL'S FOLLOW-UP ACTIVE -- 1,800-Agent Contact Center Opportunity In Play</div>
-    <div class="pri-sub">Jeremy sent a personalized follow-up to Chris Sacho at Kohl's this morning targeting their 1,800-agent contact center. 40-60% of volume is repetitive (order status, returns, shipping, payments) -- prime HappyRobot territory. Quad trial also targeting month-end kickoff -- pilot agreement needs to reach Josh by March 23rd. Two high-value enterprise deals in motion simultaneously.</div>
+    <div class="pri-label"><span class="dot"></span> FLASH — TOP SIGNAL</div>
+    <div class="pri-text">TARGET DEAL ADVANCING — Patrick McNeil Confirmed Mon 3/23 3:30–4:30 Full Team Demo/Disco</div>
+    <div class="pri-sub">Patrick McNeil (Target) replied today confirming Monday March 23 at 3:30–4:30 PM CST for the HappyRobot x Target Demo/Disco with Reed, Kristin, Trey, and himself — and separately accepted the calendar invite. Agenda set: Intros → HappyRobot product demo → Target transportation pain points. Send Dexter Newman deck today and finalize logistics use case prep before Monday.</div>
   </div>
+
   <div class="weather-bar">
-    <span class="wx-label">MINNEAPOLIS</span>
-    <span class="wx-main">27F -- Light Snow / Wind SW 12 MPH</span>
-    <span class="wx-detail">Afternoon: 1-3" Snow possible. Tonight: Clearing, low teens. Happy St. Patrick's Day</span>
-    <span class="wx-warn">WEATHER IMPACT ALERT AFTERNOON</span>
+    <span class="wx-label">🌨️ MINNEAPOLIS</span>
+    <span class="wx-main">37°F → High 21°F — Snow developing this afternoon / Wind NW</span>
+    <span class="wx-detail">Tonight: Intermittent snow, accumulating 1–2" / Low 17°F — St. Patrick's Day snow</span>
+    <span class="wx-warn">⚠ WEATHER IMPACT ALERT — 1–3" SNOW THIS AFTERNOON / EVE</span>
   </div>
+
   <div class="tabs">
     <div class="tab active" data-tab="opord">OPORD</div>
     <div class="tab" data-tab="comms">COMMS</div>
     <div class="tab" data-tab="markets">MARKETS</div>
     <div class="tab" data-tab="intel">INTEL</div>
   </div>
+
+  <!-- OPORD TAB -->
   <div class="tab-content active" id="opord">
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#128197;</span> BATTLE RHYTHM -- TODAY'S SCHEDULE</div>
+      <div class="panel-hdr"><span class="ico">📅</span> BATTLE RHYTHM — TODAY'S SCHEDULE</div>
+
       <div class="evt">
         <div class="evt-dot" style="background:var(--yellow)"></div>
         <div>
-          <span class="evt-time">0900 - 1000</span>
+          <span class="evt-time">0915 – 1015</span>
           <span class="evt-title">Tax Meeting</span>
           <span class="tag tag-personal">PERSONAL</span>
-          <div class="evt-meta">Organized by Jeremy | Personal finance -- tax prep/review session | WFH</div>
+          <div class="evt-meta">Organized by Jeremy | Personal finance / tax review</div>
         </div>
       </div>
+
       <div class="evt">
         <div class="evt-dot" style="background:var(--purple)"></div>
         <div>
-          <span class="evt-time">1100 - 1115</span>
+          <span class="evt-time">1100 – 1115</span>
           <span class="evt-title">Jeremy / Tommy Intro</span>
           <span class="tag tag-routine">ROUTINE</span>
-          <div class="evt-meta">Organized by Tommy Waytula | 2 attendees | Quick internal intro -- HappyRobot team</div>
+          <div class="evt-meta">Organized by Tommy Waytula | 2 attendees | Internal HappyRobot intro</div>
         </div>
       </div>
+
       <div class="evt">
         <div class="evt-dot" style="background:var(--yellow)"></div>
         <div>
-          <span class="evt-time">1400 - 1500</span>
+          <span class="evt-time">1400 – 1500</span>
           <span class="evt-title">Therapy</span>
           <span class="tag tag-personal">PERSONAL</span>
-          <div class="evt-meta">Organized by Jeremy | Weekly recurring session | WFH today</div>
+          <div class="evt-meta">Personal | Weekly appointment</div>
         </div>
       </div>
+
     </div>
+
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#9889;</span> ACTION ITEMS -- OPEN COMMITMENTS</div>
-      <div class="action-item"><div class="bullet">&#9658;</div><div class="text">Send presentation deck to Dexter at Target -- pending follow-up on platform demo</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9658;</div><div class="text">Check platform limitations for Quad trial period before kickoff meeting</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9658;</div><div class="text">Share pilot agreement with Josh (Quad) for legal review -- Josh returns March 23rd</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9658;</div><div class="text">Respond to Josh's proposal questions with Brooke -- Quad deal progression</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9658;</div><div class="text">Schedule Quad trial kickoff -- coordinate multiple dept stakeholders, launch before month-end</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9658;</div><div class="text">Suit fitting at Milburn -- Friday appointment confirmed (wedding prep)</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9658;</div><div class="text">Wedding vendors: Florist selection, Transportation quotes, Cake tastings. All finalized by May</div><div class="src">Granola</div></div>
+      <div class="panel-hdr"><span class="ico">⚡</span> ACTION ITEMS — OPEN COMMITMENTS</div>
+
+      <div class="action-item">
+        <div class="bullet">▸</div>
+        <div class="text">Send presentation deck to Dexter Newman (Target) — priority follow-up before Mon 3/23 demo</div>
+        <div class="src">Granola</div>
+      </div>
+
+      <div class="action-item">
+        <div class="bullet">▸</div>
+        <div class="text">Confirm Target Demo/Disco calendar invite for Mon 3/23 3:30–4:30 CST — Patrick McNeil, Reed, Kristin, Trey</div>
+        <div class="src">Gmail</div>
+      </div>
+
+      <div class="action-item">
+        <div class="bullet">▸</div>
+        <div class="text">Schedule additional meetings with Alex Ramos, Brendan Dillon (Target logistics focus)</div>
+        <div class="src">Granola</div>
+      </div>
+
+      <div class="action-item">
+        <div class="bullet">▸</div>
+        <div class="text">Quad trial launch — check status (was due to start March 16). Share pilot agreement for legal review when Josh returns March 23</div>
+        <div class="src">Granola</div>
+      </div>
+
+      <div class="action-item">
+        <div class="bullet">▸</div>
+        <div class="text">Allegiant Air (Royden Wenger) — awaiting reply to today's follow-up. If no response, determine alternate contacts John &amp; Diego for technical deep dive</div>
+        <div class="src">Gmail</div>
+      </div>
+
+      <div class="action-item">
+        <div class="bullet">▸</div>
+        <div class="text">Sam's Club — request SOPs and call recordings; work with Brooke on structured ask for additional workshop attendees</div>
+        <div class="src">Granola</div>
+      </div>
+
+      <div class="action-item">
+        <div class="bullet">▸</div>
+        <div class="text">Walmart — follow up with Juan; socialize POC direction across global team and analytics peer groups</div>
+        <div class="src">Granola</div>
+      </div>
+
+      <div class="action-item">
+        <div class="bullet">▸</div>
+        <div class="text">WEDDING: Florist selection &amp; booking — priority #1. Transportation quotes (Renee's Limos / Total Transportation)</div>
+        <div class="src">Granola</div>
+      </div>
+
+      <div class="action-item">
+        <div class="bullet">▸</div>
+        <div class="text">WEDDING: Suit fitting at Milburn — Friday appointment confirmed. Cake tastings: A Perfect Piece, Buttercream, Hy-Vee</div>
+        <div class="src">Granola</div>
+      </div>
+
     </div>
   </div>
+
+  <!-- COMMS TAB -->
   <div class="tab-content" id="comms">
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#128232;</span> INCOMING COMMS -- GMAIL / LAST 24 HRS</div>
+      <div class="panel-hdr"><span class="ico">📨</span> INCOMING COMMS — GMAIL / LAST 24 HRS</div>
+
       <div class="comm-item">
         <div class="comm-hdr" onclick="toggle(this)">
-          <span class="from">KOHL'S</span>
-          <h4>Re: Kohl's contact center - 1,800 agents, one question -- Outbound follow-up sent 0704 CST</h4>
-          <span class="tag tag-deal">DEAL</span>
-          <span class="chevron">&#9654;</span>
+          <span class="from">PATRICK / TARGET</span>
+          <h4>Accepted: HappyRobot x Target | Demo/Disco</h4>
+          <span class="tag tag-imm">IMMEDIATE</span>
+          <span class="chevron">▶</span>
         </div>
-        <div class="comm-body">Jeremy sent a tailored follow-up to Chris Sacho at Kohl's this morning. Pitch targets 1,800-agent contact center with 40-60% repetitive volume (order status, returns, shipping, payments). Awaiting reply. Active live deal -- next step: response or meeting schedule from Chris Sacho.</div>
+        <div class="comm-body">Patrick McNeil (Patrick.McNeil@target.com) formally accepted the calendar invite for the HappyRobot x Target Demo/Disco session. Confirms full Target team (Reed Johnson, Kristin Hinke, Trey Burmeister, Alex Ramos) will attend. This is the critical retail flagship discovery meeting — prep the transportation use case deck and coordinate with Brooke before Monday 3/23.</div>
       </div>
+
       <div class="comm-item">
         <div class="comm-hdr" onclick="toggle(this)">
-          <span class="from">PROSPECT</span>
-          <h4>Re: Meeting scheduled for Friday? -- Inbound sequence reply, indicates warm interest</h4>
-          <span class="tag tag-routine">ROUTINE</span>
-          <span class="chevron">&#9654;</span>
+          <span class="from">PATRICK / TARGET</span>
+          <h4>Re: HappyRobot | Post-Manifest Check In — Mon 3/23 3:30–4:30 CONFIRMED</h4>
+          <span class="tag tag-imm">IMMEDIATE</span>
+          <span class="chevron">▶</span>
         </div>
-        <div class="comm-body">Inbound reply to outbound sequence. Prospect is happy with current solution but finds HappyRobot more powerful and wants to ask questions. Classic warm-interest signal -- requires manual qualification call to assess ICP fit and transition to active pipeline.</div>
+        <div class="comm-body">Patrick replied confirming Monday 3/23 at 3:30–4:30 PM CST works (shifted from 3:00 so Reed can join the full conversation). Proposed agenda: Intros → HappyRobot product demonstration → Target transportation pain points and use case introduction. Jeremy replied confirming and sent a calendar invite. Next step: send Dexter Newman the presentation deck and finalize use case prep with Pablo/Brooke.</div>
       </div>
+
       <div class="comm-item">
         <div class="comm-hdr" onclick="toggle(this)">
-          <span class="from">PROSPECT</span>
-          <h4>Re: Review of our York-Walker conversation -- Sequence reply, will follow up tomorrow</h4>
-          <span class="tag tag-routine">ROUTINE</span>
-          <span class="chevron">&#9654;</span>
+          <span class="from">KOHLS</span>
+          <h4>Re: Kohl's Contact Center — 1,800 Agents, One Question (Supun Dewaraja + Adam Cobb)</h4>
+          <span class="tag tag-pri">PRIORITY</span>
+          <span class="chevron">▶</span>
         </div>
-        <div class="comm-body">Prospect acknowledged contact and will follow up tomorrow morning. Flag in CRM, set reminder to check for reply by EOD Wednesday.</div>
+        <div class="comm-body">Jeremy sent follow-up pitches to both Supun Dewaraja and Adam Cobb at Kohl's today, highlighting that retailers like Kohl's see 40–60% of contact center volume as repetitive (order status, returns, shipping, payment) — volume a digital voice agent can fully automate. Awaiting response from both contacts. No inbound reply yet. Monitor for engagement signals.</div>
       </div>
+
       <div class="comm-item">
         <div class="comm-hdr" onclick="toggle(this)">
-          <span class="from">PROSPECT</span>
-          <h4>Re: Latest updates from Mitchell-Ford -- Inbound reply, prospect wants to call back</h4>
-          <span class="tag tag-routine">ROUTINE</span>
-          <span class="chevron">&#9654;</span>
+          <span class="from">ALLEGIANT</span>
+          <h4>Re: HappyRobot Next Steps — Follow-up to Royden Wenger</h4>
+          <span class="tag tag-pri">PRIORITY</span>
+          <span class="chevron">▶</span>
         </div>
-        <div class="comm-body">Third inbound sequence reply today. Prospect will call back with questions -- warm-interest pattern. Review ICP fit, prep for inbound call, log in Apollo/CRM and update sequence status.</div>
+        <div class="comm-body">Jeremy sent a re-engagement follow-up to Royden Wenger (royden.wenger@allegiantair.com) today: "Hi Royden — is this something we should continue to pursue, or have things changed?" Prior thread: shared pitch deck at pitch.com/v/happyrobot-x-allegiant-air, requested intro to John and Diego for a technical deep dive, and noted NDA needs to be shared. Deal appears to be at risk of going cold — needs a response or an escalation path.</div>
       </div>
+
     </div>
+
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#128172;</span> SLACK -- LAST 24 HRS</div>
+      <div class="panel-hdr"><span class="ico">💬</span> SLACK — LAST 24 HRS</div>
       <div style="color:var(--text-muted);font-size:12px;padding:4px 0">No direct @mentions or DMs requiring action found. All clear on Slack comms.</div>
     </div>
   </div>
+
+  <!-- MARKETS TAB -->
   <div class="tab-content" id="markets">
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#128202;</span> PORTFOLIO WATCHLIST -- TRACKED POSITIONS</div>
+      <div class="panel-hdr"><span class="ico">📊</span> PORTFOLIO WATCHLIST — TRACKED POSITIONS</div>
       <div class="tickers">
+
         <div class="ticker-card" style="border-left:3px solid var(--green)">
           <div class="sym">PLTR</div>
-          <div class="price">$152.25</div>
-          <div class="chg up">&#9650; +1.02% EST</div>
-          <div class="note">Palantir -- day range $150.80-$153.86. Vol 32.9M vs avg 51.2M. AI gov and enterprise pipeline strong. Off $207.52 52w high.</div>
+          <div class="price">$155.66</div>
+          <div class="chg up">▲ +1.93% (+$2.94)</div>
+          <div class="note">Palantir — up on broad tech rally; 52-wk range $66–$207; avg target $185. Defense exposure gives it a geopolitical tailwind from Iran conflict</div>
         </div>
+
         <div class="ticker-card" style="border-left:3px solid var(--red)">
           <div class="sym">UNH</div>
-          <div class="price">$283.56</div>
-          <div class="chg down">&#9660; -42.69% YoY</div>
-          <div class="note">UnitedHealth -- today $281-$287 range. Open $284.24. Down 42.69% YoY. 52w: $234.60-$606.36. Healthcare pressure persists.</div>
+          <div class="price">$284.24</div>
+          <div class="chg down">▼ -1.20% (est.)</div>
+          <div class="note">UnitedHealth — down ~43% YoY; range $234–$606; Q1 earnings expected Apr 22. Under persistent pressure from regulatory/Medicare headwinds and prior DOJ scrutiny</div>
         </div>
-        <div class="ticker-card" style="border-left:3px solid var(--green)">
+
+        <div class="ticker-card" style="border-left:3px solid var(--accent)">
           <div class="sym">DFTX</div>
-          <div class="price">$18.30</div>
-          <div class="chg up">&#9650; +1.33%</div>
-          <div class="note">Definium Therapeutics -- range $18.12-$18.64. DT120 Phase 3 (GAD/MDD). DT402 Phase 2a (ASD). Steady bid, clinical catalyst watch.</div>
+          <div class="price">$18.37</div>
+          <div class="chg up">▲ +0.38% (+$0.07)</div>
+          <div class="note">Definium Therapeutics (fka MindMed) — small-cap psychedelic/neuro therapeutics; range $18.12–$18.64 today. Renamed Jan 2026</div>
         </div>
+
         <div class="ticker-card" style="border-left:3px solid var(--green)">
           <div class="sym">TSLA</div>
           <div class="price">$395.56</div>
-          <div class="chg up">&#9650; +1.12%</div>
-          <div class="note">Tesla -- prev close $391.20, range $394-$403. Avg PT $421.61. 22 buys / 8 sells. 52w: $214.25-$498.83.</div>
+          <div class="chg up">▲ +1.12% (+$4.36)</div>
+          <div class="note">Tesla — recovering from lows; 52-wk range $214–$498; avg target $421; Q1 earnings Apr 28. Consumer discretionary sector up 1% today</div>
         </div>
+
       </div>
     </div>
+
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#127760;</span> INDICES AND MACRO -- PRE-MKT 17 MAR / CLOSE 16 MAR 2026</div>
+      <div class="panel-hdr"><span class="ico">🌐</span> INDICES &amp; MACRO — CLOSE 17 MAR 2026</div>
       <div class="tickers">
+
         <div class="ticker-card">
           <div class="sym">S&amp;P 500</div>
-          <div class="price">6,672</div>
-          <div class="chg down">&#9660; -0.41% TODAY</div>
-          <div class="note">Cautious pullback after Monday +1.1% rebound. AI optimism vs. Middle East oil risk premium creating consolidation.</div>
+          <div class="price">6,716</div>
+          <div class="chg up">▲ +0.25%</div>
+          <div class="note">Second straight day of gains; 4:1 advance/decline ratio; energy leading at +1.7%</div>
         </div>
+
         <div class="ticker-card">
           <div class="sym">DOW JONES</div>
-          <div class="price">46,946</div>
-          <div class="chg up">&#9650; +0.83% MON</div>
-          <div class="note">Record Monday close. Tech and banks led gains. Futures indicate slight Tuesday pressure.</div>
+          <div class="price">46,993</div>
+          <div class="chg up">▲ +0.10%</div>
+          <div class="note">Chevron and Goldman Sachs leading gains; Dow lagging broader market amid oil cost pressure</div>
         </div>
+
         <div class="ticker-card">
           <div class="sym">NASDAQ</div>
-          <div class="price">NQ-F</div>
-          <div class="chg down">&#9660; -0.20% PRE</div>
-          <div class="note">Pre-market dip. Mon leaders: Nvidia +1.6%, Micron +3.7%, Meta +2.3%. NVIDIA GTC running through Thursday.</div>
+          <div class="price">22,479</div>
+          <div class="chg up">▲ +0.47%</div>
+          <div class="note">Tech outperforming; Nvidia GTC buzz and AI infra spending driving sentiment</div>
         </div>
+
         <div class="ticker-card">
           <div class="sym">BITCOIN</div>
-          <div class="price">$74,298</div>
-          <div class="chg up">&#9650; +0.52%</div>
-          <div class="note">Surged 3.7% early AM on risk-on signal. Outperforming SPX and gold since Iran war started. Still -40% from $126K ATH.</div>
+          <div class="price">$73,670</div>
+          <div class="chg up">▲ +3.02%</div>
+          <div class="note">Up 8% since Iran war began Feb 28; still 40%+ off Oct 2025 ATH of $126,198; geopolitical safe-haven bid</div>
         </div>
+
         <div class="ticker-card">
           <div class="sym">BRENT CRUDE</div>
-          <div class="price">$103.65</div>
-          <div class="chg up">&#9650; +4.00%</div>
-          <div class="note">Resuming conflict rally. Iran struck UAE gas field. Hormuz coalition announced. Supply shock deepening globally.</div>
+          <div class="price">$103.42</div>
+          <div class="chg up">▲ +3.20%</div>
+          <div class="note">Broke $100 on Hormuz closure fears; U.S. allies refusing to join escort coalition</div>
         </div>
+
         <div class="ticker-card">
           <div class="sym">WTI CRUDE</div>
-          <div class="price">$97.08</div>
-          <div class="chg up">&#9650; +4.20%</div>
-          <div class="note">Above $96. US diesel topped $5/gal first time since Dec 2022. Gulf supply disruptions from Iran war escalation.</div>
+          <div class="price">$96.21</div>
+          <div class="chg up">▲ +2.90%</div>
+          <div class="note">U.S. benchmark also surging; Strait of Hormuz carries 20% of world oil supply</div>
         </div>
+
         <div class="ticker-card">
           <div class="sym">GOLD</div>
-          <div class="price">$5,050</div>
-          <div class="chg up">&#9650; +0.98%</div>
-          <div class="note">Near record $5,000-$5,120/oz. Iran war safe-haven demand and rate cut expectations driving price. USD limits upside.</div>
+          <div class="price">$5,003</div>
+          <div class="chg down">▼ -1.15%</div>
+          <div class="note">Holding above $5,000 floor; "golden divergence" — safe haven bid despite slight pullback. Geopolitical premium intact</div>
         </div>
+
         <div class="ticker-card">
           <div class="sym">10Y YIELD</div>
-          <div class="price">4.23%</div>
-          <div class="chg flat">-- STEADY</div>
-          <div class="note">Held at 4.23%. Geopolitical risk and flight-to-safety bond demand offsetting oil-driven inflation concerns.</div>
+          <div class="price">4.20%</div>
+          <div class="chg down">▼ -2bps</div>
+          <div class="note">Fed holds 3.50–3.75% rate at Mar 17–18 FOMC meeting; SEP update tomorrow will gauge oil/inflation view</div>
         </div>
+
       </div>
     </div>
+
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#128240;</span> MARKET HEADLINES -- KEY MOVERS</div>
+      <div class="panel-hdr"><span class="ico">📰</span> MARKET HEADLINES — KEY MOVERS</div>
+
       <div class="news-item">
         <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">Brent surges to $103.65 -- Iran strikes UAE gas field, Hormuz coalition mixed signals</span>
+          <span class="news-title">🛢️ Brent Crude Breaks $103 — Strait of Hormuz Closure Fears Intensify</span>
           <span class="tag tag-flash">FLASH</span>
-          <span class="news-arrow">&#9660;</span>
+          <span class="news-arrow">▼</span>
         </div>
-        <div class="news-body"><div class="news-body-inner">Brent crude surged 4% back above $103 after Monday pullback. Iran set a huge UAE gas field ablaze and Israel confirmed killing Iran's security chief. Trump announced a shipping coalition for the Strait of Hormuz but sent mixed signals on Iranian tanker access. US diesel topped $5/gal for the first time since December 2022 due to Gulf supply disruptions.</div></div>
+        <div class="news-body"><div class="news-body-inner">Brent crude surged 3.2% to $103.42/bbl as U.S. allies refused Trump's call to send warships to escort tankers through the Strait of Hormuz, which carries ~20% of global daily oil supply. WTI rose 2.9% to $96.21. Analysts warn the effective blockade could add 0.8% to global inflation by end of 2026. Trump posted on Truth Social that the U.S. doesn't need NATO help — markets eased off highs on the comment as crude ticked higher.</div></div>
       </div>
+
       <div class="news-item">
         <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">Gold holds $5,000+ per ounce -- Historic safe-haven demand at record levels amid Iran war</span>
+          <span class="news-title">🤖 Nvidia GTC 2026 — Jensen Huang Projects $1 Trillion in AI Chip Orders</span>
           <span class="tag tag-mkt">MARKET</span>
-          <span class="news-arrow">&#9660;</span>
+          <span class="news-arrow">▼</span>
         </div>
-        <div class="news-body"><div class="news-body-inner">Gold trading in $5,000-$5,120/oz range near record levels. Primary drivers: Iran war geopolitical uncertainty, central bank rate cut expectations, institutional flight-to-safety. Strong USD and elevated yields (10Y 4.23%) limiting further upside. Wednesday range expected $4,996-$5,052.</div></div>
+        <div class="news-body"><div class="news-body-inner">At GTC 2026, Nvidia CEO Jensen Huang unveiled the Vera Rubin GPU architecture and projected at least $1 trillion in revenue opportunity for AI chips through 2027, doubling year-ago projections. Morgan Stanley reiterated Overweight on NVDA. The company also launched a space computing platform — "the final frontier has arrived." Meta simultaneously locked in a $27B AI infrastructure deal, further validating the spend cycle.</div></div>
       </div>
+
       <div class="news-item">
         <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">Bitcoin above $74K -- Outperforming all major assets since Iran war started per CNBC</span>
+          <span class="news-title">✈️ Delta Air Lines Raises Q1 Revenue Guidance to High Single-Digits</span>
           <span class="tag tag-mkt">MARKET</span>
-          <span class="news-arrow">&#9660;</span>
+          <span class="news-arrow">▼</span>
         </div>
-        <div class="news-body"><div class="news-body-inner">Bitcoin has outperformed S&amp;P 500, Nasdaq, and gold since the Iran war started. BTC surged 3.7% in early trading before settling at $74,298. Citigroup cut 12-month BTC forecast to $112K from $143K. BTC still 40%+ below October 2025 ATH of $126,198.</div></div>
+        <div class="news-body"><div class="news-body-inner">Delta shares traded +4% after raising Q1 revenue growth guidance to high single-digit expansion (prior guide: 5–7%). American Airlines also moved higher in sympathy. Consumer discretionary sector up 1% on the day, led by Expedia and Booking Holdings, plus airline strength. Strong travel demand signals consumers remain resilient despite energy shock.</div></div>
       </div>
+
       <div class="news-item">
         <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">S&amp;P 500 pulls back 0.41% -- AI optimism at NVIDIA GTC vs. Middle East energy risk</span>
+          <span class="news-title">🏦 Fed Decision Tomorrow — Markets Hold Breath on Oil/Inflation Outlook</span>
           <span class="tag tag-mkt">MARKET</span>
-          <span class="news-arrow">&#9660;</span>
+          <span class="news-arrow">▼</span>
         </div>
-        <div class="news-body"><div class="news-body-inner">After strong Monday rebound (S&amp;P +1.1%, Nasdaq +1.2%, Dow +1%) driven by tankers navigating Hormuz, Tuesday brings cautious consolidation. Nvidia +1.6%, Micron +3.7%, Meta +2.3% led Monday. Markets now balancing long-term AI infrastructure optimism against immediate geopolitical and energy risk premiums.</div></div>
+        <div class="news-body"><div class="news-body-inner">The Fed's March 17–18 FOMC meeting concludes tomorrow with a rate decision and updated SEP projections. Current rate: 3.50–3.75%. The key question is whether the Fed leans hawkish on elevated oil/inflation or takes a wait-and-see stance. The 10-year yield is down 2bps to 4.20%; the VIX is down 5% to 22.17; the Dollar Index is lower at 99.54. A hawkish surprise would cap equity upside.</div></div>
       </div>
+
     </div>
   </div>
+
+  <!-- INTEL TAB -->
   <div class="tab-content" id="intel">
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#128308;</span> GEOPOLITICAL INTELLIGENCE -- THREAT ASSESSMENT</div>
+      <div class="panel-hdr"><span class="ico">🔴</span> GEOPOLITICAL INTELLIGENCE — THREAT ASSESSMENT</div>
+
       <div class="news-item">
         <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">US-Israel-Iran War ONGOING -- Hormuz closure operational, global energy markets in shock</span>
+          <span class="news-title">🔥 US-Israel War on Iran — Day 18: Strikes on Tehran, Shiraz &amp; Tabriz; Larijani Targeted</span>
           <span class="tag tag-flash">FLASH</span>
-          <span class="news-arrow">&#9660;</span>
+          <span class="news-arrow">▼</span>
         </div>
-        <div class="news-body"><div class="news-body-inner">The US-Israel-Iran war continues to escalate with no sign of moderating. Israel confirmed killing Iran's security chief. Iran struck UAE energy infrastructure including a major gas field ablaze. The Strait of Hormuz disruption has moved from contingency to operational reality, unleashing cascading effects across global commodity markets. Southeast Asian economies activating emergency energy measures. 20 Thai crew members rescued after Strait attack.</div></div>
+        <div class="news-body"><div class="news-body-inner">Israel carried out simultaneous strikes on Tehran, Shiraz, and Tabriz, claiming to have "eliminated" Iran's National Security Council Secretary Ali Larijani (unconfirmed by Iran) and killed Basij commander Gholamreza Soleimani. The U.S.-Israel war on Iran, which began Feb. 28, continues to intensify, killing civilians including children. An Amnesty International investigation found the U.S. responsible for striking a primary school in Minab that killed 170+, including 160+ girls.</div></div>
       </div>
+
       <div class="news-item">
         <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">US-China Xi-Trump April Summit -- Trade deal expected on semiconductors and critical minerals</span>
+          <span class="news-title">🚢 Strait of Hormuz — Effective Closure, Energy Crisis, Allies Refuse U.S. Escort Request</span>
+          <span class="tag tag-flash">FLASH</span>
+          <span class="news-arrow">▼</span>
+        </div>
+        <div class="news-body"><div class="news-body-inner">The Strait of Hormuz — through which ~20% of global oil flows — is effectively closed. U.S. allies have refused Trump's request to send warships for tanker escorts. VIX has surged 70%+ year-to-date, peaking near 30. Brent crude hit $98.30 on a single-day 6.9% surge on March 12; now above $103. Analysts warn the blockade could add 0.8% to global inflation by end of 2026.</div></div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-hdr" onclick="toggle(this)">
+          <span class="news-title">🇱🇧 Lebanon Escalating — IDF Ground Operations; 1M+ Displaced</span>
           <span class="tag tag-imm">IMMEDIATE</span>
-          <span class="news-arrow">&#9660;</span>
+          <span class="news-arrow">▼</span>
         </div>
-        <div class="news-body"><div class="news-body-inner">An anticipated summit between Xi Jinping and Trump in April is expected to produce a tentative trade arrangement on semiconductors and critical minerals. This bilateral relationship is the most important geopolitical indicator in 2026. A new a16z report highlights AI usage fragmenting into three distinct geopolitical blocks with separate technological standards -- a risk to international collaboration.</div></div>
+        <div class="news-body"><div class="news-body-inner">Israel launched limited ground operations in Lebanon against Hezbollah. More than 1 million people have been registered as displaced since the Israeli attack on Hezbollah began. Hezbollah retaliated, attacking Israeli troops and vehicles in at least three Lebanese border towns. German Chancellor Friedrich Merz called the Israeli ground offensive an "error" that would "further exacerbate" the situation.</div></div>
       </div>
+
       <div class="news-item">
         <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">US Army inks $20B AI defense deal with Anduril -- Largest government AI contract ever</span>
+          <span class="news-title">🇵🇰 Pakistan Airstrike Kills 400+ in Kabul Drug Rehabilitation Hospital</span>
           <span class="tag tag-imm">IMMEDIATE</span>
-          <span class="news-arrow">&#9660;</span>
+          <span class="news-arrow">▼</span>
         </div>
-        <div class="news-body"><div class="news-body-inner">The US Army signed a $20 billion contract with Anduril for AI-driven defense technologies. Simultaneously, humanoid combat robots are now deployed in Ukraine for reconnaissance and ground operations -- scale-up target of 50,000 units by 2027. China has developed an AI radar system that distinguishes real targets from drone swarms in real time, marking a critical military AI advancement.</div></div>
+        <div class="news-body"><div class="news-body-inner">A Pakistani airstrike on what Afghan authorities described as a drug rehabilitation hospital in Kabul killed over 400 people and injured 250 overnight. Pakistan rejected the Afghan Taliban's account as "false and misleading," claiming it "precisely targeted military installations and terrorist support infrastructure." The strike significantly escalates Pakistan-Afghanistan tensions.</div></div>
       </div>
+
       <div class="news-item">
         <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">Venezuela's Maduro Captured -- US renews Western Hemisphere prioritization in 2026</span>
-          <span class="tag tag-geo">GEO</span>
-          <span class="news-arrow">&#9660;</span>
+          <span class="news-title">🇺🇸 Trump: "Taking Cuba in Some Form" — Administration Seeks Regime Change</span>
+          <span class="tag tag-pri">PRIORITY</span>
+          <span class="news-arrow">▼</span>
         </div>
-        <div class="news-body"><div class="news-body-inner">Venezuelan President Nicolas Maduro has been captured as part of the US renewed prioritization of the Western Hemisphere. Latin America is undergoing significant political transformation in 2026. Markets monitoring for regional stability impacts and potential effects on Venezuelan oil supply flows.</div></div>
+        <div class="news-body"><div class="news-body-inner">Trump stated in the Oval Office he is open to "taking Cuba in some form — whether I free it, take it." Four sources say the Trump administration is seeking to push President Díaz-Canel from power while preserving the rest of the Communist government structure. The comment adds to a growing list of territorial ambitions (Greenland, Panama Canal) in Trump's second term foreign policy posture.</div></div>
       </div>
-      <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">Southeast Asia energy crisis -- Indonesia and Philippines activate emergency fuel programs</span>
-          <span class="tag tag-geo">GEO</span>
-          <span class="news-arrow">&#9660;</span>
-        </div>
-        <div class="news-body"><div class="news-body-inner">Indonesia activating energy conservation directives amid Middle East supply crisis. Philippines expanding fuel subsidies to ~400,000 PUV drivers by April as Marcos monitors Hormuz. Rising fuel costs spreading economic pressure globally and raising logistics costs for multinationals.</div></div>
-      </div>
+
     </div>
+
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#129302;</span> AI / TECH INTEL -- SECTOR DEVELOPMENTS</div>
+      <div class="panel-hdr"><span class="ico">🤖</span> AI / TECH INTEL — SECTOR DEVELOPMENTS</div>
+
       <div class="news-item">
         <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">NVIDIA GTC 2026 LIVE -- Rubin GPUs, Vera CPUs, agent frameworks and robotics today in San Jose</span>
+          <span class="news-title">🟢 Nvidia GTC 2026 — Vera Rubin Architecture, $1T Market, Space Computing Unveiled</span>
           <span class="tag tag-ai">AI</span>
-          <span class="news-arrow">&#9660;</span>
+          <span class="news-arrow">▼</span>
         </div>
-        <div class="news-body"><div class="news-body-inner">NVIDIA GTC 2026 runs March 16-19 in San Jose. Today (March 17): DOE Undersecretary Dario Gil joins NVIDIA VP Ian Buck on AI in climate and energy research; UMG chairman Sir Lucian Grainge joins VP Richard Kerris on music and AI. Key announcements expected around Groq-powered inference, Rubin GPU architecture, Vera CPU platform, agentic AI frameworks, and robotics stack.</div></div>
+        <div class="news-body"><div class="news-body-inner">Jensen Huang unveiled Vera Rubin and Rubin Ultra GPU architectures at GTC 2026, projecting a $1 trillion AI chip revenue opportunity through 2027. Nvidia also launched a space computing platform (Vera Rubin Space-1 Module with IGX Thor and Jetson Orin) — "Space computing, the final frontier, has arrived." Meta simultaneously announced a $27 billion AI infrastructure commitment, signaling AI capex acceleration is far from peak.</div></div>
       </div>
+
       <div class="news-item">
         <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">Eli Lilly launches "LillyPod" -- 1,016 Blackwell Ultra GPUs, aims to halve drug development timeline</span>
+          <span class="news-title">⚖️ Anthropic vs. Pentagon — Legal Battle Over AI Procurement Blacklist</span>
           <span class="tag tag-ai">AI</span>
-          <span class="news-arrow">&#9660;</span>
+          <span class="news-arrow">▼</span>
         </div>
-        <div class="news-body"><div class="news-body-inner">Eli Lilly inaugurated LillyPod, the pharma industry's most powerful AI supercomputer, on NVIDIA DGX SuperPOD with 1,016 Blackwell Ultra GPUs delivering over 9,000 petaflops. Traditional wet labs test ~2,000 molecular hypotheses/year -- LillyPod simulates billions in parallel. Lilly aims to cut the 10-year drug development timeline in half. Potential tailwind for DFTX and broader biotech sector.</div></div>
+        <div class="news-body"><div class="news-body-inner">Tech trade associations are backing Anthropic in its legal fight after the Pentagon moved to blacklist the company as a supply-chain risk — a major test of how far the U.S. government can restrict AI procurement based on safety positions. The case has direct implications for every AI lab with public-sector ambitions. Defense AI demand is one of the largest commercial drivers for frontier-model companies including Anthropic.</div></div>
       </div>
+
       <div class="news-item">
         <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">Anthropic releases Claude Sonnet 4.6 and Opus 4.6 -- 1M token context, memory live for all users</span>
+          <span class="news-title">🚀 GPT-5.4 Launches with 1M-Token Context &amp; Native Computer Use; Claude Sonnet 4.6 Live</span>
           <span class="tag tag-ai">AI</span>
-          <span class="news-arrow">&#9660;</span>
+          <span class="news-arrow">▼</span>
         </div>
-        <div class="news-body"><div class="news-body-inner">Anthropic launched Claude Sonnet 4.6 and Opus 4.6 with 1-million-token context window in beta and improved coding capabilities. Memory features rolled out to all Claude users in early March. Opus 4.6 deployed as an add-in inside Microsoft PowerPoint and Excel -- direct enterprise workflow integration. Relevant competitive landscape for HappyRobot AI positioning and enterprise sales conversations.</div></div>
+        <div class="news-body"><div class="news-body-inner">OpenAI launched GPT-5.4 on March 5 with 1 million token context and native computer use built in. Anthropic rolled out memory features for all Claude users and launched Claude Sonnet 4.6 (Feb 17) and Opus 4.6 (Feb 5) with 1M-token context in beta. Opus 4.6 is deployed as an add-in inside Microsoft PowerPoint and Excel, deepening enterprise workflow integration. ChatGPT now has 900M weekly active users — 10%+ of global population.</div></div>
       </div>
+
       <div class="news-item">
         <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">xAI admits full rebuild -- Musk says "not built right" as 4 co-founders exit in recent weeks</span>
+          <span class="news-title">💊 Eli Lilly's "LillyPod" — Pharma's Most Powerful AI Supercomputer Launches</span>
           <span class="tag tag-ai">AI</span>
-          <span class="news-arrow">&#9660;</span>
+          <span class="news-arrow">▼</span>
         </div>
-        <div class="news-body"><div class="news-body-inner">Elon Musk acknowledged xAI "was not built right" and is undergoing a complete rebuild. Co-founders Tony Wu, Igor Babuschkin, Kyle Kosic, and Christian Szegedy all departed recently. Meanwhile the AI model race accelerates: Gemini 3.1 Pro, GPT-5.3 Codex, Grok 4.20, and DeepSeek V4 all launched recently -- more capability advancement than entire prior years combined.</div></div>
+        <div class="news-body"><div class="news-body-inner">Eli Lilly inaugurated LillyPod, built on Nvidia DGX SuperPOD with 1,016 Blackwell Ultra GPUs delivering 9,000+ petaflops. Where wet labs test ~2,000 molecular hypotheses/year, LillyPod can simulate billions in parallel. Lilly aims to cut the typical 10-year drug development timeline in half. AI is now embedded at the frontier of genomics, molecule design, and clinical trial optimization.</div></div>
       </div>
+
       <div class="news-item">
         <div class="news-hdr" onclick="toggle(this)">
-          <span class="news-title">AI regulation escalating -- UK/Ireland probe Grok, DeepSeek banned globally, Google antitrust push</span>
+          <span class="news-title">📈 Agentic AI Goes Mainstream — 44% of Enterprises Deploying Agents in 2026</span>
           <span class="tag tag-ai">AI</span>
-          <span class="news-arrow">&#9660;</span>
+          <span class="news-arrow">▼</span>
         </div>
-        <div class="news-body"><div class="news-body-inner">UK and Ireland launched investigations into Grok. DeepSeek banned in multiple countries. European publishers pressing Brussels to accelerate antitrust action against Google Search as AI reshapes information discovery. Growing global calls for AI safety regulations indicate governments catching up to the technology's pace. Enterprise AI compliance watch warranted for HappyRobot sales pipeline.</div></div>
+        <div class="news-body"><div class="news-body-inner">Nvidia's 2026 State of AI survey shows 86% of respondents expect AI budgets to increase, with 40% projecting 10%+ growth. Agentic AI — autonomous reasoning, planning, and execution — is moving from experimentation to full enterprise deployment, touching code development, legal, financial tasks, and customer service. Directly relevant: HappyRobot's voice agent automation play is squarely in this wave.</div></div>
       </div>
+
     </div>
   </div>
+
   <div class="footer">
-    SITREP -- AUTO-GENERATED FOR CMIEL, JEREMY &nbsp;|&nbsp; 17 MAR 2026 0700 LOCAL &nbsp;|&nbsp; CLASSIFICATION: UNCLASSIFIED &nbsp;|&nbsp; SOURCES: GCAL, GMAIL, GRANOLA, NOTION, WEB OSINT
+    SITREP — AUTO-GENERATED FOR CMIEL, JEREMY &nbsp;|&nbsp; 17 MAR 2026 1600 LOCAL &nbsp;|&nbsp; CLASSIFICATION: UNCLASSIFIED &nbsp;|&nbsp; SOURCES: GCAL, GMAIL, GRANOLA, NOTION, WEB OSINT
   </div>
 </div>
+
 <script>
 document.querySelectorAll('.tab').forEach(t=>{
   t.addEventListener('click',()=>{
