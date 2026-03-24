@@ -101,300 +101,326 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;opa
 </style>
 </head>
 <body>
-
 <div class="topbar">
   <div style="display:flex;align-items:center">
     <span class="brand">SITREP</span>
     <span class="brand-sub">DAILY INTELLIGENCE BRIEF</span>
   </div>
   <div class="clock">
-    <b>TUE 24 MAR 2026</b> &nbsp;|&nbsp; 0700 LOCAL &nbsp;|&nbsp; MINNEAPOLIS
+    <b>TUE 24 MAR 2026</b> &nbsp;|&nbsp; 1600 LOCAL &nbsp;|&nbsp; MINNEAPOLIS
   </div>
 </div>
-
 <div class="ticker-wrap">
   <div class="ticker">
-    <div class="ticker-item"><span class="lbl">S&amp;P 500</span> 6,581.00 <span class="up">&#9650; 1.15%</span></div>
-    <div class="ticker-item"><span class="lbl">DOW</span> 46,208.47 <span class="up">&#9650; 1.38%</span></div>
-    <div class="ticker-item"><span class="lbl">NASDAQ</span> 21,946.76 <span class="up">&#9650; 1.38%</span></div>
-    <div class="ticker-item"><span class="lbl">PLTR</span> $160.84 <span class="up">&#9650; 4.46%</span></div>
-    <div class="ticker-item"><span class="lbl">UNH</span> $269.94 <span class="down">&#9660; 1.73%</span></div>
-    <div class="ticker-item"><span class="lbl">DFTX</span> $18.36 <span class="flat">&mdash; 0.00%</span></div>
+    <div class="ticker-item"><span class="lbl">S&amp;P 500</span> 5,748 <span class="down">&#9660; 0.26%</span></div>
+    <div class="ticker-item"><span class="lbl">DOW</span> 45,372 <span class="down">&#9660; 0.28%</span></div>
+    <div class="ticker-item"><span class="lbl">NASDAQ</span> 18,040 <span class="down">&#9660; 0.25%</span></div>
+    <div class="ticker-item"><span class="lbl">PLTR</span> $154.78 <span class="down">&#9660; 3.77%</span></div>
+    <div class="ticker-item"><span class="lbl">UNH</span> $272.67 <span class="up">&#9650; 1.16%</span></div>
+    <div class="ticker-item"><span class="lbl">DFTX</span> $18.10 <span class="down">&#9660; 1.63%</span></div>
     <div class="ticker-item"><span class="lbl">TSLA</span> $380.85 <span class="up">&#9650; 3.50%</span></div>
-    <div class="ticker-item"><span class="lbl">BTC</span> $70,736 <span class="flat">&mdash; HOLD</span></div>
-    <div class="ticker-item"><span class="lbl">BRENT</span> $101.44 <span class="down">&#9660; 4.20%</span></div>
-    <div class="ticker-item"><span class="lbl">GOLD</span> $4,574.90 <span class="up">&#9650; 0.35%</span></div>
-    <div class="ticker-item"><span class="lbl">10Y</span> 4.42% <span class="up">&#9650; 3bp</span></div>
-    <!-- duplicate for seamless loop -->
-    <div class="ticker-item"><span class="lbl">S&amp;P 500</span> 6,581.00 <span class="up">&#9650; 1.15%</span></div>
-    <div class="ticker-item"><span class="lbl">DOW</span> 46,208.47 <span class="up">&#9650; 1.38%</span></div>
-    <div class="ticker-item"><span class="lbl">NASDAQ</span> 21,946.76 <span class="up">&#9650; 1.38%</span></div>
-    <div class="ticker-item"><span class="lbl">PLTR</span> $160.84 <span class="up">&#9650; 4.46%</span></div>
-    <div class="ticker-item"><span class="lbl">UNH</span> $269.94 <span class="down">&#9660; 1.73%</span></div>
-    <div class="ticker-item"><span class="lbl">DFTX</span> $18.36 <span class="flat">&mdash; 0.00%</span></div>
+    <div class="ticker-item"><span class="lbl">BTC</span> $71,045 <span class="up">&#9650; 0.21%</span></div>
+    <div class="ticker-item"><span class="lbl">BRENT</span> $102.47 <span class="up">&#9650; 4.12%</span></div>
+    <div class="ticker-item"><span class="lbl">GOLD</span> $4,411 <span class="up">&#9650; 0.15%</span></div>
+    <div class="ticker-item"><span class="lbl">10Y</span> 4.37% <span class="up">&#9650; 2bp</span></div>
+    <div class="ticker-item"><span class="lbl">S&amp;P 500</span> 5,748 <span class="down">&#9660; 0.26%</span></div>
+    <div class="ticker-item"><span class="lbl">DOW</span> 45,372 <span class="down">&#9660; 0.28%</span></div>
+    <div class="ticker-item"><span class="lbl">NASDAQ</span> 18,040 <span class="down">&#9660; 0.25%</span></div>
+    <div class="ticker-item"><span class="lbl">PLTR</span> $154.78 <span class="down">&#9660; 3.77%</span></div>
+    <div class="ticker-item"><span class="lbl">UNH</span> $272.67 <span class="up">&#9650; 1.16%</span></div>
+    <div class="ticker-item"><span class="lbl">DFTX</span> $18.10 <span class="down">&#9660; 1.63%</span></div>
     <div class="ticker-item"><span class="lbl">TSLA</span> $380.85 <span class="up">&#9650; 3.50%</span></div>
-    <div class="ticker-item"><span class="lbl">BTC</span> $70,736 <span class="flat">&mdash; HOLD</span></div>
-    <div class="ticker-item"><span class="lbl">BRENT</span> $101.44 <span class="down">&#9660; 4.20%</span></div>
-    <div class="ticker-item"><span class="lbl">GOLD</span> $4,574.90 <span class="up">&#9650; 0.35%</span></div>
-    <div class="ticker-item"><span class="lbl">10Y</span> 4.42% <span class="up">&#9650; 3bp</span></div>
+    <div class="ticker-item"><span class="lbl">BTC</span> $71,045 <span class="up">&#9650; 0.21%</span></div>
+    <div class="ticker-item"><span class="lbl">BRENT</span> $102.47 <span class="up">&#9650; 4.12%</span></div>
+    <div class="ticker-item"><span class="lbl">GOLD</span> $4,411 <span class="up">&#9650; 0.15%</span></div>
+    <div class="ticker-item"><span class="lbl">10Y</span> 4.37% <span class="up">&#9650; 2bp</span></div>
   </div>
 </div>
-
 <div class="main">
-
   <div class="priority">
-    <div class="pri-label"><span class="dot"></span> FLASH &mdash; TOP SIGNAL</div>
-    <div class="pri-text">Q1 REVENUE SURGE meeting at 1200 &mdash; Target &amp; GAP demos landed yesterday, deliverables due NOW</div>
-    <div class="pri-sub">Yesterday&rsquo;s Target demo (8 attendees incl. Patrick McNeil) and GAP Technical Deep Dive both generated immediate follow-up commitments. You owe GAP the recording, deck, workflow templates, integration docs, and commercial model breakdown. Target needs a custom executive roadshow demo. Q1 Revenue Surge sync with Diego, AEs, and Founders is at noon &mdash; come prepared with deal momentum updates.</div>
+    <div class="pri-label"><span class="dot"></span> FLASH &#8212; TOP SIGNAL</div>
+    <div class="pri-text">EOQ REVENUE PUSH &#8212; $900K in deals expected to close today/tomorrow</div>
+    <div class="pri-sub">Diego&#39;s end-of-quarter report flags Ryder, XPO Europe, and Allcargo ECU as imminent signatures. Javier needs to confirm Walter Group status. Meanwhile, you sent follow-ups to Target (first mile roadshow), GAP (tech deep dive recap), Hertz (Matthew Foster depot visit), Quad (Denny IT support), and Loblaw (Wayne Scott POC timeline).</div>
   </div>
-
   <div class="weather-bar">
     <span class="wx-label">&#9925; MINNEAPOLIS</span>
-    <span class="wx-main">54&deg;F &mdash; Cloudy / Wind SSE 5-10 mph</span>
-    <span class="wx-detail">Tonight: 39&deg;F / Clearing late / Wind SSE 5-10 mph</span>
+    <span class="wx-main">50&#176;F &#8212; Partly Cloudy / Wind SSE 10-15 mph</span>
+    <span class="wx-detail">Tonight: Cloudy early, partly cloudy after midnight, Low 40&#176;F | Tomorrow: 69&#176;F, partly cloudy</span>
   </div>
-
   <div class="tabs">
     <div class="tab active" data-tab="opord">OPORD</div>
     <div class="tab" data-tab="comms">COMMS</div>
     <div class="tab" data-tab="markets">MARKETS</div>
     <div class="tab" data-tab="intel">INTEL</div>
   </div>
-
-  <!-- OPORD TAB -->
   <div class="tab-content active" id="opord">
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#128197;</span> BATTLE RHYTHM &mdash; TODAY'S SCHEDULE</div>
+      <div class="panel-hdr"><span class="ico">&#128197;</span> BATTLE RHYTHM &#8212; TODAY&#39;S SCHEDULE</div>
       <div class="evt">
         <div class="evt-dot" style="background:var(--yellow)"></div>
         <div>
           <span class="evt-time">ALL DAY</span>
           <span class="evt-title">Working from Home</span>
           <span class="tag tag-personal">PERSONAL</span>
-          <div class="evt-meta">Work location set to Home</div>
+          <div class="evt-meta">Working location set</div>
         </div>
       </div>
       <div class="evt">
         <div class="evt-dot" style="background:var(--orange)"></div>
         <div>
-          <span class="evt-time">1200 &ndash; 1230</span>
+          <span class="evt-time">1200 &#8211; 1230</span>
           <span class="evt-title">Q1 Revenue Surge</span>
           <span class="tag tag-imm">IMMEDIATE</span>
-          <div class="evt-meta">Organized by Diego | 6 attendees (AEs, Deal Desk, Founders, Brooke) | Revenue review sync</div>
+          <div class="evt-meta">Organized by Diego | AEs, Deal Desk, Founders, Brooke | End-of-quarter deal review</div>
         </div>
       </div>
       <div class="evt">
         <div class="evt-dot" style="background:var(--accent)"></div>
         <div>
-          <span class="evt-time">1300 &ndash; 1400</span>
+          <span class="evt-time">1300 &#8211; 1400</span>
           <span class="evt-title">Jeremy / Brooke 1:1</span>
           <span class="tag tag-pri">PRIORITY</span>
-          <div class="evt-meta">Organized by Brooke | 2 attendees | Manager sync &mdash; discuss Target, GAP, Quad, Walmart pipeline</div>
+          <div class="evt-meta">Organized by Brooke | 2 attendees | Deal strategy sync &#8212; Trinity Logistics pricing, Element Fleet contracts</div>
         </div>
       </div>
     </div>
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#9889;</span> ACTION ITEMS &mdash; OPEN COMMITMENTS</div>
-      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Send meeting recording &amp; PowerPoint deck to GAP (Sara, Imad, Kishore)</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Provide complete list of workflow templates to GAP</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Share integration documentation &amp; connector details with GAP</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Send commercial model breakdown (platform + consumption + services) to GAP</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Prepare custom Target-specific demo for executive roadshow &mdash; focus first-mile with Blue Yonder TMS</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Check platform limitations for Quad Graphics trial period</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Share pilot agreement with Quad for legal review (Josh returned Mar 23)</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Share recording &amp; presentation materials with Walmart (Sonny &amp; Nate)</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Follow up with Hertz &mdash; Matthew circling back after depot visit; explore Harrison Wright connection</div><div class="src">Granola</div></div>
-      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Book florist (highest priority wedding vendor) &mdash; all vendors finalized by May</div><div class="src">Granola</div></div>
+      <div class="panel-hdr"><span class="ico">&#9889;</span> ACTION ITEMS &#8212; OPEN COMMITMENTS</div>
+      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Prepare custom Target-specific demo for executive roadshow (first-mile workflows + Blue Yonder TMS)</div><div class="src">Granola</div></div>
+      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Send GAP team: meeting recording, PowerPoint deck, workflow templates, integration docs, commercial model</div><div class="src">Granola</div></div>
+      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Follow up with Dexter Newman at Target re: tailored demo roadshow for Target Tech teams</div><div class="src">Gmail</div></div>
+      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Await Matthew Foster (Hertz) response on depot visit follow-up and driver visibility use case</div><div class="src">Gmail</div></div>
+      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Follow up with Denny Stiles (Quad) on IT support for 2-week trial kick-off</div><div class="src">Gmail</div></div>
+      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Await Wayne Scott (Loblaw) response on infosec review timeline and POC start dates</div><div class="src">Gmail</div></div>
+      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Submit Joe Van Bolderen&#39;s resume for Deployment Strategist role (referral, starred)</div><div class="src">Gmail</div></div>
+      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Share Quad pilot agreement for legal review (Josh returned March 23)</div><div class="src">Granola</div></div>
+      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Help Samuel Viall with Cowork setup issue &#8212; he&#39;s free rest of afternoon</div><div class="src">Slack</div></div>
+      <div class="action-item"><div class="bullet">&#9656;</div><div class="text">Wedding: Finalize florist selection, get transportation quotes, schedule cake tastings</div><div class="src">Granola</div></div>
     </div>
   </div>
-
-  <!-- COMMS TAB -->
   <div class="tab-content" id="comms">
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#128232;</span> INCOMING COMMS &mdash; GMAIL / LAST 24 HRS</div>
+      <div class="panel-hdr"><span class="ico">&#128232;</span> INCOMING COMMS &#8212; GMAIL / LAST 24 HRS</div>
       <div class="comm-item">
-        <div class="comm-hdr" onclick="toggle(this)"><span class="from">PROSPECT</span><h4>Re: Recap of the Saturday meeting &mdash; prospect interested, wants callback</h4><span class="tag tag-imm">IMMEDIATE</span><span class="chevron">&#9654;</span></div>
-        <div class="comm-body">Prospect says they&rsquo;re happy with current solution but acknowledges yours &ldquo;seems more powerful.&rdquo; Wants to call back later today with questions. Hot lead &mdash; be ready for inbound call.</div>
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">DIEGO</span><h4>End of Quarter Revenue Push (&#11088; STARRED)</h4><span class="tag tag-flash">FLASH</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">$900K in revenue expected: Ryder, XPO Europe, Allcargo ECU signing today/tomorrow. Javier Palafox to update on Walter Group status. Attached EoQ1 review PDF sent to Founders, Brooke, AEs, and Deal Desk.</div>
       </div>
       <div class="comm-item">
-        <div class="comm-hdr" onclick="toggle(this)"><span class="from">NOAH G.</span><h4>Re: Schedule a virtual meeting &mdash; requesting call tomorrow afternoon</h4><span class="tag tag-pri">PRIORITY</span><span class="chevron">&#9654;</span></div>
-        <div class="comm-body">Noah Gonzalez replied asking to know more and requesting a call tomorrow afternoon. Schedule follow-up and prep materials.</div>
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">JOE VB</span><h4>Referral to Happy Robot (&#11088; STARRED)</h4><span class="tag tag-imm">IMMEDIATE</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Joseph Van Bolderen sent resume for Deployment Strategist role. Asks Jeremy to submit it and let him know how to help. Resume PDF attached.</div>
       </div>
       <div class="comm-item">
-        <div class="comm-hdr" onclick="toggle(this)"><span class="from">PROSPECT</span><h4>Re: Set up the Wednesday call &mdash; interested, wants callback with questions</h4><span class="tag tag-pri">PRIORITY</span><span class="chevron">&#9654;</span></div>
-        <div class="comm-body">Prospect says they&rsquo;re happy with current solution but yours seems more powerful. Will call back today with questions. Second warm inbound lead today.</div>
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">KEVIN COX</span><h4>Re: Latest developments at Jacobs, Barnett and Ray</h4><span class="tag tag-pri">PRIORITY</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Kevin thanks the team for the update and wants to learn more. Requests a call tomorrow morning.</div>
       </div>
       <div class="comm-item">
-        <div class="comm-hdr" onclick="toggle(this)"><span class="from">JOHN KIM</span><h4>Re: Look into Krueger, Myers and Le &mdash; met previously, wants to reconnect</h4><span class="tag tag-routine">ROUTINE</span><span class="chevron">&#9654;</span></div>
-        <div class="comm-body">John Kim replied positively &mdash; recalls meeting a few months ago and wants to discuss further. Suggests connecting when you&rsquo;re in the area.</div>
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">JEREMY</span><h4>Mobility visit follow up &#8212; Matthew Foster (Hertz)</h4><span class="tag tag-deal">DEAL</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Outbound to Matthew Foster at Hertz following up on depot visit. Referenced driver visibility and comms at scale as Hertz pushes toward 20+ cities. Awaiting response.</div>
       </div>
       <div class="comm-item">
-        <div class="comm-hdr" onclick="toggle(this)"><span class="from">NOTION</span><h4>Isolina Zambrana made updates in Happyrobot Inc.</h4><span class="tag tag-routine">ROUTINE</span><span class="chevron">&#9654;</span></div>
-        <div class="comm-body">Notion workspace update notification &mdash; Isolina made changes to pages in the Happyrobot Inc. workspace. Review if relevant to your deals.</div>
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">JEREMY</span><h4>HappyRobot follow up &#8212; Dexter Newman (Target)</h4><span class="tag tag-deal">DEAL</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Updated Dexter on great meeting with Reed Johnson and the first mile team. Discussing a roadshow of tailored demos for Target Tech separate teams.</div>
+      </div>
+      <div class="comm-item">
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">JEREMY</span><h4>happyrobot follow up &#8212; Target First Mile Team</h4><span class="tag tag-deal">DEAL</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Sent follow-up to Patrick, Reed, Alex, Trey, Kristin at Target. Shared meeting recording and outlined next steps from yesterday&#39;s first mile demo/discovery session.</div>
+      </div>
+      <div class="comm-item">
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">JEREMY</span><h4>Happyrobot follow up &#8212; GAP Technical Deep Dive</h4><span class="tag tag-deal">DEAL</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Sent follow-up to Imad, Nikhil, Sara, Tom at GAP after yesterday&#39;s technical deep dive. Thanked team and outlined deliverables and next steps. CC&#39;d Taher, Brooke, Erin, Sven.</div>
+      </div>
+      <div class="comm-item">
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">JEREMY</span><h4>happyrobot poc timeline? &#8212; Wayne Scott (Loblaw)</h4><span class="tag tag-deal">DEAL</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Outbound to Wayne Scott at Loblaw introducing yourself post-Christian&#39;s departure. Asking about infosec review timeline and POC start dates to align resources.</div>
+      </div>
+      <div class="comm-item">
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">JEREMY</span><h4>Any update? &#8212; Denny Stiles (Quad)</h4><span class="tag tag-deal">DEAL</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Checking with Denny on IT support availability for the 2-week trial. Need to schedule a resource for kick-off meeting.</div>
+      </div>
+      <div class="comm-item">
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">MURAL</span><h4>Welcome to Mural!</h4><span class="tag tag-routine">ROUTINE</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Account setup confirmation from Mural. Ready to collaborate and innovate.</div>
+      </div>
+      <div class="comm-item">
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">DANA G.</span><h4>Re: Meeting scheduled for Wednesday?</h4><span class="tag tag-routine">ROUTINE</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Dana Guerrero thanks for the fast response, wants to know more and asks to be pinged tomorrow morning.</div>
       </div>
     </div>
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#128172;</span> SLACK &mdash; LAST 24 HRS</div>
-      <div style="color:var(--text-muted);font-size:12px;padding:4px 0">No direct @mentions or DMs requiring action found. All clear on Slack comms.</div>
+      <div class="panel-hdr"><span class="ico">&#128172;</span> SLACK &#8212; LAST 24 HRS</div>
+      <div class="comm-item">
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">SAM VIALL</span><h4>Needs help with Cowork setup &#8212; wants to pair on your workflow</h4><span class="tag tag-imm">IMMEDIATE</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Sam tried setting up what you built and hit an issue. Asked to hop on a cowork session when you have time. He&#39;s free the rest of the afternoon.</div>
+      </div>
+      <div class="comm-item">
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">ORIOL</span><h4>Checking in &#8212; made it safe, asking how you&#39;re doing</h4><span class="tag tag-personal">PERSONAL</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Oriol Bermejo confirmed he arrived safely. Casual check-in DM.</div>
+      </div>
+      <div class="comm-item">
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">BROOKE</span><h4>1:1 coordination &#8212; started a few minutes late</h4><span class="tag tag-routine">ROUTINE</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Brooke asked to start the 1:1 a few min late, then pinged when jumping on. Also shared GAP integration details in group DM with Taher (33+ native connectors).</div>
+      </div>
+      <div class="comm-item">
+        <div class="comm-hdr" onclick="toggle(this)"><span class="from">KAI BOT</span><h4>Meeting reminder &#8212; 1:1 with Brooke at 1300</h4><span class="tag tag-routine">ROUTINE</span><span class="chevron">&#9654;</span></div>
+        <div class="comm-body">Kai bot flagged Trinity Logistics pricing discussions and Element Fleet contract updates as context for the Brooke sync.</div>
+      </div>
     </div>
   </div>
-
-  <!-- MARKETS TAB -->
   <div class="tab-content" id="markets">
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#128200;</span> PORTFOLIO WATCHLIST &mdash; TRACKED POSITIONS</div>
+      <div class="panel-hdr"><span class="ico">&#128202;</span> PORTFOLIO WATCHLIST &#8212; TRACKED POSITIONS</div>
       <div class="tickers">
-        <div class="ticker-card" style="border-left:3px solid var(--green)">
+        <div class="ticker-card" style="border-left:3px solid var(--red)">
           <div class="sym">PLTR</div>
-          <div class="price">$160.84</div>
-          <div class="chg up">&#9650; 4.46%</div>
-          <div class="note">Palantir &mdash; Strong rally on defense/AI sentiment. Iran conflict boosting gov tech names.</div>
+          <div class="price">$154.78</div>
+          <div class="chg down">&#9660; 3.77%</div>
+          <div class="note">Palantir &#8212; fell on broad tech weakness despite new government contract wins</div>
+        </div>
+        <div class="ticker-card" style="border-left:3px solid var(--green)">
+          <div class="sym">UNH</div>
+          <div class="price">$272.67</div>
+          <div class="chg up">&#9650; 1.16%</div>
+          <div class="note">UnitedHealth &#8212; defensive rally as investors rotate out of tech into healthcare</div>
         </div>
         <div class="ticker-card" style="border-left:3px solid var(--red)">
-          <div class="sym">UNH</div>
-          <div class="price">$269.94</div>
-          <div class="chg down">&#9660; 1.73%</div>
-          <div class="note">UnitedHealth &mdash; Continued pressure amid healthcare policy uncertainty and sector rotation.</div>
-        </div>
-        <div class="ticker-card" style="border-left:3px solid var(--accent)">
           <div class="sym">DFTX</div>
-          <div class="price">$18.36</div>
-          <div class="chg flat">&mdash; HOLDING</div>
-          <div class="note">Definium Therapeutics (fka MindMed) &mdash; Trading in tight range $18.20&ndash;$18.99. Phase 3 trials ongoing.</div>
+          <div class="price">$18.10</div>
+          <div class="chg down">&#9660; 1.63%</div>
+          <div class="note">Definium Therapeutics (fmr. MindMed) &#8212; light pullback, low volume day</div>
         </div>
         <div class="ticker-card" style="border-left:3px solid var(--green)">
           <div class="sym">TSLA</div>
           <div class="price">$380.85</div>
           <div class="chg up">&#9650; 3.50%</div>
-          <div class="note">Tesla &mdash; Rallied Mon on Iran de-escalation. Pre-market soft (-0.17%) after analyst downgrade on EU deliveries.</div>
+          <div class="note">Tesla &#8212; strong bounce from $368, outperforming Nasdaq on EV demand optimism</div>
         </div>
       </div>
     </div>
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#127760;</span> INDICES &amp; MACRO &mdash; CLOSE 23 MAR / PRE-MKT 24 MAR</div>
+      <div class="panel-hdr"><span class="ico">&#127760;</span> INDICES &amp; MACRO &#8212; CLOSE 24 MAR 2026</div>
       <div class="tickers">
         <div class="ticker-card">
           <div class="sym">S&amp;P 500</div>
-          <div class="price">6,581.00</div>
-          <div class="chg up">&#9650; 1.15%</div>
-          <div class="note">Relief rally on Trump Iran de-escalation signal. Futures -0.1% pre-market.</div>
+          <div class="price">5,748</div>
+          <div class="chg down">&#9660; 0.26%</div>
+          <div class="note">Pulled back as crude prices resumed climb; Iran war Week 4</div>
         </div>
         <div class="ticker-card">
           <div class="sym">DOW JONES</div>
-          <div class="price">46,208.47</div>
-          <div class="chg up">&#9650; 1.38% (+631 pts)</div>
-          <div class="note">Broad-based rally led by industrials and energy. Futures +0.15%.</div>
+          <div class="price">45,372</div>
+          <div class="chg down">&#9660; 0.28%</div>
+          <div class="note">Gave back some of Monday&#39;s 600pt relief rally</div>
         </div>
         <div class="ticker-card">
           <div class="sym">NASDAQ</div>
-          <div class="price">21,946.76</div>
-          <div class="chg up">&#9650; 1.38%</div>
-          <div class="note">Tech led gains on NVDA supply deal news. Futures +0.54%.</div>
+          <div class="price">18,040</div>
+          <div class="chg down">&#9660; 0.25%</div>
+          <div class="note">Tech under pressure despite strong AI sector momentum</div>
         </div>
         <div class="ticker-card">
           <div class="sym">BITCOIN</div>
-          <div class="price">$70,736</div>
-          <div class="chg flat">&mdash; HOLDING</div>
-          <div class="note">Consolidating near $70K. Risk-on sentiment supporting but oil volatility capping upside.</div>
+          <div class="price">$71,045</div>
+          <div class="chg up">&#9650; 0.21%</div>
+          <div class="note">Holding near $71K, resilient amid macro uncertainty</div>
         </div>
         <div class="ticker-card">
           <div class="sym">BRENT CRUDE</div>
-          <div class="price">$101.44</div>
-          <div class="chg down">&#9660; 4.20%</div>
-          <div class="note">Sharp drop as Trump delays Iran strikes. Hormuz ultimatum extended 5 days.</div>
+          <div class="price">$102.47</div>
+          <div class="chg up">&#9650; 4.12%</div>
+          <div class="note">Spiking on Strait of Hormuz closure fears; brief touch of $119</div>
         </div>
         <div class="ticker-card">
           <div class="sym">WTI CRUDE</div>
-          <div class="price">$91.27</div>
-          <div class="chg up">&#9650; 3.50%</div>
-          <div class="note">Recovering from lows after plunge through ascending trendline. Highly volatile.</div>
+          <div class="price">$92.35</div>
+          <div class="chg up">&#9650; 4.02%</div>
+          <div class="note">May futures surging as Middle East supply risk escalates</div>
         </div>
         <div class="ticker-card">
           <div class="sym">GOLD</div>
-          <div class="price">$4,574.90</div>
-          <div class="chg up">&#9650; 0.35%</div>
-          <div class="note">Modest rebound as safe-haven demand persists despite equity rally.</div>
+          <div class="price">$4,411</div>
+          <div class="chg up">&#9650; 0.15%</div>
+          <div class="note">Safe haven bid continues; near all-time highs</div>
         </div>
         <div class="ticker-card">
           <div class="sym">10Y YIELD</div>
-          <div class="price">4.42%</div>
-          <div class="chg up">&#9650; 3bp</div>
-          <div class="note">Highest since July 2025. Steepening curve as inflation expectations firm on oil.</div>
+          <div class="price">4.37%</div>
+          <div class="chg up">&#9650; 2bp</div>
+          <div class="note">Rising on inflation and geopolitical risk repricing</div>
         </div>
       </div>
     </div>
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#128240;</span> MARKET HEADLINES &mdash; KEY MOVERS</div>
+      <div class="panel-hdr"><span class="ico">&#128240;</span> MARKET HEADLINES &#8212; KEY MOVERS</div>
       <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#128200; Dow surges 631 pts as Trump signals Iran talks, delays strikes on energy infrastructure</span><span class="tag tag-flash">FLASH</span><span class="news-arrow">&#9660;</span></div>
-        <div class="news-body"><div class="news-body-inner">Markets rallied sharply Monday after Trump said the US and Iran have held talks and he was halting strikes on Iranian power plants. Investors see potential de-escalation of the conflict that spiked oil prices and raised recession fears.</div></div>
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#128680; Brent crude spikes past $102 as Strait of Hormuz closure fears intensify</span><span class="tag tag-flash">FLASH</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">Oil prices surged as the ongoing Iran conflict threatens to disrupt nearly 20% of global daily oil supply through the Strait of Hormuz. Brent briefly touched $119 before settling. WTI May futures closed above $92. Energy stocks rallied while the broader market pulled back.</div></div>
       </div>
       <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#128187; NVIDIA premarket +1.8% on major AI chip supply agreement with sovereign wealth funds</span><span class="tag tag-mkt">MARKET</span><span class="news-arrow">&#9660;</span></div>
-        <div class="news-body"><div class="news-body-inner">NVDA seeing significant premarket interest following reports of a major new supply agreement for its latest AI infrastructure chips. Lifting AMD and AVGO in sympathy. Apple also up 0.7% on GenAI partnership news.</div></div>
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#128200; Dow gives back Monday&#39;s 600-point relief rally as Iran talks stall</span><span class="tag tag-mkt">MARKET</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">Markets reversed course after Monday&#39;s surge driven by Trump&#39;s claim of &#34;productive&#34; US-Iran talks. Iran denied any negotiations, and the IRGC called the statements &#34;fake news.&#34; Indices slipped as oil resumed climbing.</div></div>
       </div>
       <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#9992;&#65039; American Airlines rallies on easing fuel cost concerns as oil drops from highs</span><span class="tag tag-mkt">MARKET</span><span class="news-arrow">&#9660;</span></div>
-        <div class="news-body"><div class="news-body-inner">Airlines and transportation stocks benefiting from the oil pullback. Brent crude dropped over 4% from recent highs on hopes of Iran de-escalation. Fuel costs had been the top headwind for carriers.</div></div>
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#129302; AI trade splits in two &#8212; infrastructure vs. application plays diverge</span><span class="tag tag-mkt">MARKET</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">Motley Fool analysis highlights a growing divergence in AI stocks: infrastructure plays (semiconductors, cloud) holding up while pure application-layer companies face valuation pressure. Investors advised to pick the &#34;right side&#34; for 2026.</div></div>
       </div>
       <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#128201; Tesla slips 1.2% premarket on analyst downgrade citing weak EU Q1 deliveries</span><span class="tag tag-mkt">MARKET</span><span class="news-arrow">&#9660;</span></div>
-        <div class="news-body"><div class="news-body-inner">A prominent analyst downgraded TSLA citing concerns over Q1 delivery volumes in the European market. Stock had rallied 3.5% Monday on the broader risk-on move. Terafab $20B+ chip facility announcement provides longer-term catalyst.</div></div>
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#127919; Saudi Arabia intercepts ~20 drones targeting Eastern Province oil facilities</span><span class="tag tag-flash">FLASH</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">Saudi air defenses intercepted approximately 20 drones aimed at the Eastern Province, home to the majority of the kingdom&#39;s energy infrastructure. No significant damage reported, but the attack escalated supply disruption fears.</div></div>
       </div>
     </div>
   </div>
-
-  <!-- INTEL TAB -->
   <div class="tab-content" id="intel">
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#128308;</span> GEOPOLITICAL INTELLIGENCE &mdash; THREAT ASSESSMENT</div>
+      <div class="panel-hdr"><span class="ico">&#128308;</span> GEOPOLITICAL INTELLIGENCE &#8212; THREAT ASSESSMENT</div>
       <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#128165; US-Israel war on Iran enters Day 25 &mdash; Trump extends Hormuz ultimatum 5 days</span><span class="tag tag-flash">FLASH</span><span class="news-arrow">&#9660;</span></div>
-        <div class="news-body"><div class="news-body-inner">President Trump postponed strikes on Iranian power plants, extending the Strait of Hormuz ultimatum by 5 days after claiming &ldquo;productive conversations&rdquo; and 15 points of agreement with Tehran. White House cautioned situation is &ldquo;fluid&rdquo; and speculation about meetings &ldquo;should not be deemed as final.&rdquo; Iranian state media pushes back, denying direct negotiations.</div></div>
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#127470;&#127479; US-Israel War on Iran &#8212; Day 25: Massive strikes on central Tehran</span><span class="tag tag-flash">FLASH</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">Israel carried out a large wave of airstrikes in central Tehran targeting command centers and 50+ additional targets including ballistic missile storage sites. Iran launched multiple missile waves at Israel, damaging a multi-story apartment building in Tel Aviv. Pentagon expected to send 82nd Airborne to the Middle East.</div></div>
       </div>
       <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#127480;&#127462; Saudi Arabia intercepts ~20 Iranian drones targeting Eastern Province oil facilities</span><span class="tag tag-imm">IMMEDIATE</span><span class="news-arrow">&#9660;</span></div>
-        <div class="news-body"><div class="news-body-inner">Saudi Arabia intercepted approximately 20 drones targeting its Eastern Province, home to the majority of the kingdom&rsquo;s energy infrastructure. Saudi Arabia has ordered Iran&rsquo;s military attach&eacute; and four embassy staff to leave within 24 hours, citing repeated attacks including a drone strike on the Red Sea port of Yanbu.</div></div>
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#129309; Trump claims Iran offered &#34;prize&#34; deal &#8212; Tehran denies any talks</span><span class="tag tag-imm">IMMEDIATE</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">President Trump said Iran made a valuable offer to reach a deal, but Iranian officials firmly denied any negotiations, with the IRGC calling statements &#34;fake news.&#34; Israeli officials told NPR that planning was underway for talks in Pakistan later this week, adding confusion to diplomatic signals.</div></div>
       </div>
       <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#127470;&#127479; Iran launches new rocket barrage at Israel, claims air defense penetration</span><span class="tag tag-imm">IMMEDIATE</span><span class="news-arrow">&#9660;</span></div>
-        <div class="news-body"><div class="news-body-inner">Iran responded to escalating conflict by launching a new barrage of rockets toward Israel, claiming to have penetrated Israeli air defense systems. At least 1,029 people killed in Israeli strikes since March 2 according to Lebanese authorities. Israeli military also struck a bridge linking southern Lebanon with eastern Bekaa.</div></div>
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#127473;&#127463; Lebanon devastation escalates &#8212; 1,000+ killed, 1M+ displaced in March</span><span class="tag tag-imm">IMMEDIATE</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">Israel&#39;s attacks in Lebanon in March have killed more than 1,000 people and displaced more than 1 million according to the Lebanese government. Multiple evacuation warnings continue to be issued as the regional conflict widens.</div></div>
       </div>
       <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#127468;&#127463; UK deploying short-range air defense systems to Middle East</span><span class="tag tag-pri">PRIORITY</span><span class="news-arrow">&#9660;</span></div>
-        <div class="news-body"><div class="news-body-inner">PM Keir Starmer announced the UK is sending short-range air defence systems to the Middle East to counter Iranian missile attacks. Signals broadening Western involvement in the conflict beyond the US-Israel axis.</div></div>
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#127758; China mapping Pacific, Indian &amp; Arctic ocean floors for submarine warfare</span><span class="tag tag-pri">PRIORITY</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">China is conducting a vast undersea mapping and monitoring operation across three oceans, building detailed knowledge of marine conditions. Naval experts say this data would be crucial for waging submarine warfare against the US and its allies.</div></div>
+      </div>
+      <div class="news-item">
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#127963; ICE agents deployed at US airports &#8212; new enforcement posture</span><span class="tag tag-pri">PRIORITY</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">CNN reports ICE agents are now stationed at US airports as part of an expanded enforcement operation, marking a significant shift in immigration enforcement posture at transportation hubs.</div></div>
       </div>
     </div>
     <div class="panel">
-      <div class="panel-hdr"><span class="ico">&#129302;</span> AI / TECH INTEL &mdash; SECTOR DEVELOPMENTS</div>
+      <div class="panel-hdr"><span class="ico">&#129302;</span> AI / TECH INTEL &#8212; SECTOR DEVELOPMENTS</div>
       <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#127822; Apple announces AI-powered Siri reimagined with Google Gemini, launching with iOS 26.4</span><span class="tag tag-ai">AI</span><span class="news-arrow">&#9660;</span></div>
-        <div class="news-body"><div class="news-body-inner">Apple revealed a completely reimagined Siri powered by Google&rsquo;s Gemini AI, debuting March 2026 with iOS 26.4. The new assistant features &ldquo;on-screen awareness&rdquo; and seamless cross-app integration running on Apple&rsquo;s Private Cloud Compute infrastructure.</div></div>
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#127822; Apple&#39;s AI-powered Siri overhaul launching with iOS 26.4</span><span class="tag tag-ai">AI</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">Apple officially announced a reimagined AI-powered Siri for March 2026 release. The new version features on-screen awareness and seamless cross-app integration, transforming Siri into a context-aware assistant. WWDC 2026 set for June 8-12 at Apple Park.</div></div>
       </div>
       <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#128640; Musk announces Terafab &mdash; $20B+ joint semiconductor facility in Austin with Tesla, SpaceX, xAI</span><span class="tag tag-ai">AI</span><span class="news-arrow">&#9660;</span></div>
-        <div class="news-body"><div class="news-body-inner">Elon Musk announced Terafab, a joint $20B+ semiconductor fabrication facility in Austin, TX developed by Tesla, SpaceX, and xAI. Will manufacture custom chips optimized for EVs, Optimus humanoid robots, and high-performance AI computing.</div></div>
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#128188; OpenAI plans to nearly double workforce to 8,000 by end of 2026</span><span class="tag tag-ai">AI</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">OpenAI announced aggressive hiring plans across product, engineering, research, and sales, with expanded office space. The company aims to reach approximately 8,000 employees by end of 2026, nearly doubling its current headcount.</div></div>
       </div>
       <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#128176; OpenAI surpasses $25B annualized revenue, eyes IPO as soon as late 2026</span><span class="tag tag-ai">AI</span><span class="news-arrow">&#9660;</span></div>
-        <div class="news-body"><div class="news-body-inner">OpenAI has surpassed $25 billion in annualized revenue and is reportedly taking early steps toward a public listing, potentially as soon as late 2026. Massive scale validates enterprise AI adoption thesis.</div></div>
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#127973; Doctronic raises $40M Series B for HIPAA-compliant autonomous clinical AI</span><span class="tag tag-ai">AI</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">New York-based Doctronic, offering 24/7 autonomous clinical decisions and consultations, raised $40M in Series B bringing total funding to $65M. The HIPAA-compliant platform signals growing investor confidence in healthcare AI autonomy.</div></div>
       </div>
       <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#9889; Google launches Gemini 3.1 Flash-Lite &mdash; 2.5x faster, 45% faster output at $0.25/M tokens</span><span class="tag tag-ai">AI</span><span class="news-arrow">&#9660;</span></div>
-        <div class="news-body"><div class="news-body-inner">Google introduced Gemini 3.1 Flash-Lite, an efficiency-focused model delivering 2.5x faster response times and 45% faster output generation compared to earlier versions. Priced at $0.25 per million input tokens &mdash; significant cost compression for enterprise deployments.</div></div>
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#127963; US Treasury launches AI Innovation Series for financial system resilience</span><span class="tag tag-ai">AI</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">The Office of Financial Stability Oversight Council and Treasury&#39;s AI Transformation Office launched a public-private initiative to support the US financial system&#39;s strength and resilience through AI adoption and governance frameworks.</div></div>
       </div>
       <div class="news-item">
-        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#128663; NVIDIA partners with Alpamayo for autonomous vehicle digital twin testing</span><span class="tag tag-ai">AI</span><span class="news-arrow">&#9660;</span></div>
-        <div class="news-body"><div class="news-body-inner">NVIDIA announced a strategic partnership with Alpamayo to streamline autonomous vehicle development. Leveraging DRIVE Orin and Thor platforms alongside Alpamayo&rsquo;s digital twin technology to create hyper-realistic testing environments and reduce physical road testing.</div></div>
+        <div class="news-hdr" onclick="toggle(this)"><span class="news-title">&#128274; iPhone exploit kit leaked &#8212; millions of devices potentially vulnerable</span><span class="tag tag-flash">FLASH</span><span class="news-arrow">&#9660;</span></div>
+        <div class="news-body"><div class="news-body-inner">A full exploit kit capable of hacking millions of iPhones has been publicly leaked, raising urgent security concerns ahead of Apple&#39;s planned software updates. No patch timeline announced yet.</div></div>
       </div>
     </div>
   </div>
-
   <div class="footer">
-    SITREP &mdash; AUTO-GENERATED FOR CMIEL, JEREMY &nbsp;|&nbsp; 24 MAR 2026 0700 LOCAL &nbsp;|&nbsp; CLASSIFICATION: UNCLASSIFIED &nbsp;|&nbsp; SOURCES: GCAL, GMAIL, GRANOLA, NOTION, WEB OSINT
+    SITREP &#8212; AUTO-GENERATED FOR CMIEL, JEREMY &nbsp;|&nbsp; 24 MAR 2026 1600 LOCAL &nbsp;|&nbsp; CLASSIFICATION: UNCLASSIFIED &nbsp;|&nbsp; SOURCES: GCAL, GMAIL, GRANOLA, NOTION, WEB OSINT
   </div>
 </div>
-
 <script>
 document.querySelectorAll('.tab').forEach(t=>{
   t.addEventListener('click',()=>{
